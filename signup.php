@@ -1,3 +1,10 @@
+<?php session_start();
+if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSION["lastname"])) {
+    header("Location: mainpage.php");
+} else {
+
+}
+?>
 <!DOCTYPE html>
 <!-- Designined by CodingLab - youtube.com/codinglabyt -->
 <html lang="en" dir="ltr">

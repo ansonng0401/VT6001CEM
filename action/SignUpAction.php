@@ -86,7 +86,7 @@ if (isset($_POST['email']))
                     $_SESSION["firstname"] = $firstname;
                     $_SESSION["lastname"] = $lastname;
                     echo '<script type="text/javascript">';
-                 echo 'window.location = "../personalitytest/p1.php";';
+                 echo 'window.location = "../p1.php";';
                  echo '</script>';
                 }
     // //     else
