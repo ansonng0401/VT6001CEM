@@ -26,6 +26,11 @@ body{
   font-weight: 500;
   position: relative;
 }
+.container .Main{
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
 .container .title::before{
   content: "";
   position: absolute;
@@ -35,6 +40,15 @@ body{
   width: 30px;
   border-radius: 5px;
   background:linear-gradient(to right, rgb(255, 98, 98) , rgb(253, 178, 92));
+}
+.container .Main::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
 }
 .content form .user-details{
   display: flex;
