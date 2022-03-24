@@ -1,0 +1,14 @@
+body{
+    background-image: linear-gradient(to right, rgb(255, 98, 98) , rgb(253, 178, 92));
+}
+
+.container{
+
+height: 200px;
+width: 400px;
+position: absolute;     /*絕對位置*/
+top: 38%;               /*從上面開始算，下推 50% (一半) 的位置*/
+left: 50%;              /*從左邊開始算，右推 50% (一半) 的位置*/
+margin-top: -100px;     /*高度的一半*/
+margin-left: -200px;    /*寬度的一半*/
+}

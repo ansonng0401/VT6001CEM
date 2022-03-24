@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- === Coding by CodingLab | www.codinglabweb.com === -->
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,7 @@
 
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="assets/CSS/Loginstyle.css">
-         
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Personalised Dating Matching</title>
 </head>
 <body>
@@ -21,13 +22,13 @@
             <div class="form login">
                 <center><span class="Logotitle">Personalised Dating Matching</span><br></center>
                 <span class="title">Login</span>
-                <form action="#">
+                <form action="action/loginAction.php"  method="post">
                     <div class="input-field">
-                        <input type="text" placeholder="Enter your email" required>
+                        <input type="email" placeholder="Enter your email"  name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct email address" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Enter your password" required>
+                        <input type="password"  name= "password" class="password" placeholder="Enter your password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -42,7 +43,7 @@
                     </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Login Now">
+                        <input type="submit" value="Login Now">
                     </div>
                 </form>
 
@@ -53,6 +54,7 @@
                 </div>
             </div>
 
+            <script src="script.js"></script>
 
 </body>
 </html>
