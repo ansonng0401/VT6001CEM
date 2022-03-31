@@ -7,7 +7,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
 }
 ?>
 <!DOCTYPE html>
-<!-- === Coding by CodingLab | www.codinglabweb.com === -->
+
 <html lang="en">
 
 <head>
