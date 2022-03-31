@@ -65,13 +65,14 @@
          <br>
          <h4>Edit User Password</h4>
 
-         <form method="POST" action="./action/saveUserProfileAction.php">
+         <form method="POST" action="./action/saveUserPasswordAction.php">
+         <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" readonly required>
              <label for="exampleFormControlInput1"> Old Password </label>
-             <input type="password" class="form-control" name=password pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+             <input type="password" class="form-control" name=oldpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your old password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
              <label for="exampleFormControlInput1"> New Password </label>
-             <input type="password" class="form-control" name=newpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-             <label for="exampleFormControlInput1"> Confirm your new Password </label>
-             <input type="password" class="form-control" name=newpasswordConfirm pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+             <input type="password" class="form-control" name=newpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+             <label for="exampleFormControlInput1"> Confirm New Password </label>
+             <input type="password" class="form-control" name=newpasswordConfirm pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
              <small id="passwordHelpInline" class="text-muted">
              Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters.
     </small>
