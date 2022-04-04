@@ -26,7 +26,7 @@ include 'header.php';
                     <strong>Personality Test</strong>
                 </p>
                 <p>
-               1. I Am the life of the party.
+                2. I Feel little concern for others. 
                 </p>
                 <div class="progress">
   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 2%"></div>
@@ -72,8 +72,10 @@ include 'header.php';
         </form>
     </div>
 
-    <div class="card-footer text-end">
-        <button type="button"  onclick="location.href='p2.php'" class="btn btn-primary">Next</button>
+    <div class="card-footer text-end"> 
+ <button type="button" class="btn btn-primary">Return
+   <div class="R">
+        <button type="button" class="btn btn-primary">Next</button>    </div>
     </div>
 </div>
 </div>

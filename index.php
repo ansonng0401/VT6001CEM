@@ -19,7 +19,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="assets/CSS/Loginstyle.css">
+    <link rel="stylesheet" href="assets/CSS/loginstyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Personalised Dating Matching</title>
 </head>
