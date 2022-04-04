@@ -2,7 +2,6 @@
 <?php 
 include 'header.php';
 ?>
-
 </head>
 <link href="./assets/CSS/testpg.css" rel="stylesheet">
 
@@ -10,6 +9,19 @@ include 'header.php';
     <div class="container">
 </body>
 
+
+<?php
+$Q="Q34";
+$RQ="Q33";
+$RRQ="33";
+$NQ="35";
+if ((isset($_POST[$RQ]))) {
+    $_SESSION[$RQ] = $_POST[$RQ];
+}elseif((isset($_SESSION[$RQ]))){
+} else{
+    header("Location: ./p$RRQ.php");
+}
+?>
 
 <div class="mx-0 mx-sm-auto">
     <div class="card">
@@ -20,23 +32,22 @@ include 'header.php';
                     <strong>Personality Test</strong>
                 </p>
                 <p>
-                    1. I Am the life of the party.
-                </p>
+                    34. I change my mood a lot.
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                        aria-valuemin="0" aria-valuemax="100" style="width: 66%"></div>
                 </div>
             </div>
             <hr />
             <?php 
 
-if (isset($_SESSION['Q1'])) {
+if (isset($_SESSION[$Q])) {
     echo"
-    <form action=\"p2.php\" method=\"POST\">";
-    if ($_SESSION['Q1']==0){
+    <form action=\"p$NQ.php\" method=\"POST\">";
+    if ($_SESSION[$Q]==0){
     echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=\"Q1\" id=\"radio2Example1\" checked/>
+        <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=$Q id=\"radio2Example1\" checked/>
         <label class=\"form-check-label\" for=\"radio2Example1\">
             Not at all
         </label>
@@ -44,7 +55,7 @@ if (isset($_SESSION['Q1'])) {
 ";}else{
     echo"
     <div class=\"form-check mb-2\">
-    <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=\"Q1\" id=\"radio2Example1\" />
+    <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=$Q id=\"radio2Example1\" />
     <label class=\"form-check-label\" for=\"radio2Example1\">
         Not at all
     </label>
@@ -52,10 +63,10 @@ if (isset($_SESSION['Q1'])) {
 
     ";
 };
-if ($_SESSION['Q1']==1){
+if ($_SESSION[$Q]==1){
     echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"1\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" checked/>
+        <input class=\"form-check-input\" value=\"1\" type=\"radio\" name=$Q id=\"radio2Example2\" checked/>
         <label class=\"form-check-label\" for=\"radio2Example2\">
             Slightly disagree
         </label>
@@ -64,7 +75,7 @@ if ($_SESSION['Q1']==1){
     ";}else{
 echo"
         <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"1\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" />
+        <input class=\"form-check-input\" value=\"1\" type=\"radio\" name=\"Q2\" id=\"radio2Example2\" />
         <label class=\"form-check-label\" for=\"radio2Example2\">
             Slightly disagree
             </label>
@@ -72,41 +83,41 @@ echo"
             </label>
         ";       
     };
-    if  ($_SESSION['Q1']==2){
+    if  ($_SESSION[$Q]==2){
         echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" / checked>
+        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=$Q id=\"radio2Example2\" / checked>
         <label class=\"form-check-label\" for=\"radio2Example2\">
             Neutral
         </label>
     </div>  ";}else{ echo"
         <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" />
+        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=$Q id=\"radio2Example2\" />
         <label class=\"form-check-label\" for=\"radio2Example2\">
             Neutral
         </label>
     </div>  ";       
-}; if  ($_SESSION['Q1']==3){
+}; if  ($_SESSION[$Q]==3){
 echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" / checked>
+        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=$Q id=\"radio2Example3\" / checked>
         <label class=\"form-check-label\" for=\"radio2Example3\">
             Slightly
         </label>
     </div>
 ";}else{ echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" />
+        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=$Q id=\"radio2Example3\" />
         <label class=\"form-check-label\" for=\"radio2Example3\">
             Slightly
         </label>
     </div>       
     "; 
 }; 
-if ($_SESSION['Q1']==4){
+if ($_SESSION[$Q]==4){
     echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" / checked>
+        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=$Q id=\"radio2Example4\" / checked>
         <label class=\"form-check-label\" for=\"radio2Example4\">
             Agree
         </label>
@@ -114,7 +125,7 @@ if ($_SESSION['Q1']==4){
 </div>
 ";}else{ echo" 
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" />
+        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=$Q id=\"radio2Example4\" />
         <label class=\"form-check-label\" for=\"radio2Example4\">
             Agree
         </label>
@@ -125,6 +136,7 @@ if ($_SESSION['Q1']==4){
 }; 
 echo"
 <div class=\"card-footer text-end\">
+<a href=\"p$RRQ.php\" target=\"self\"><input type=\"button\"  class=\"btn btn-primary\" value=\"Return\"  /></a>
 <input type=\"submit\"  class=\"btn btn-primary\" value=\"Next\"  />
 </div>
 </form>
@@ -134,42 +146,45 @@ echo"
 
 } else {
     echo"
-    <form  action=\"p2.php\" method=\"POST\">
+    <form  action=\"p$NQ.php\" method=\"POST\">
 
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=\"Q1\" id=\"radio2Example1\" />
+        <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=$Q id=\"radio2Example1\" />
         <label class=\"form-check-label\" for=\"radio2Example1\">
             Not at all
         </label>
     </div>
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"1\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" />
+        <input class=\"form-check-input\" value=\"1\" type=\"radio\" name=$Q id=\"radio2Example2\" />
         <label class=\"form-check-label\" for=\"radio2Example2\">
             Slightly disagree
         </label>
     </div>
     </label>
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" />
+        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=$Q id=\"radio2Example2\" />
         <label class=\"form-check-label\" for=\"radio2Example2\">
             Neutral
         </label>
     </div>
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" />
+        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=$Q id=\"radio2Example3\" />
         <label class=\"form-check-label\" for=\"radio2Example3\">
             Slightly
         </label>
     </div>
 
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" />
+        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=$Q id=\"radio2Example4\" />
         <label class=\"form-check-label\" for=\"radio2Example4\">
             Agree
         </label>
     </div>
+
+    
 </div>
 <div class=\"card-footer text-end\">
+<a href=\"p$RRQ.php\" target=\"self\"><input type=\"button\"  class=\"btn btn-primary\" value=\"Return\"  /></a>
 <input type=\"submit\"  class=\"btn btn-primary\" value=\"Next\"  />
 </div>
 </form>
@@ -178,10 +193,6 @@ echo"
 ";
 }
 ?>
-
-
-
-
         </div>
     </div>
 
