@@ -1,62 +1,158 @@
 <!DOCTYPE html>
-<?php
-include 'header.php';
-?>
+
 
 <?php
-if ((isset($_POST["Q50"]))) {
-    $_SESSION["Q50"] = $_POST["Q50"];
-} elseif ((isset($_SESSION[$RQ]))) {
-} else {
-    header("Location: ./p50.php");
+include 'header.php';
+require_once('./action/conn.php');
+
+
+$personalitysql = "SELECT * FROM  userinfo WHERE userid = '$_SESSION[userid]'";
+$rs = mysqli_query($conn, $personalitysql) or die(mysqli_error($conn));
+while ($rc = mysqli_fetch_assoc($rs)) {
+$personality = $rc['personality'];
 }
+mysqli_free_result($rs);
+$personalitytestresultsql = "SELECT * FROM  personalitytestresult WHERE userid = '$_SESSION[userid]'";
+$rs1 = mysqli_query($conn, $personalitytestresultsql) or die(mysqli_error($conn));
+while ($rc = mysqli_fetch_assoc($rs1)) {
+$O = $rc['O'];
+$C = $rc['C'];
+$E = $rc['E'];
+$A = $rc['A'];
+$N = $rc['N'];}
+
 extract($_SESSION);
-for ($q = 1;$q <= 50;$q++) {
-    if ((isset($_SESSION['Q' . $q]))) {
-    } else {
-        header("Location: ./p$q.php");
-    }
+if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$personality=="Extroversion"||$personality=="Agreeableness"||$personality=="Neuroticism") {
+}else{
+
+    header("Location: ./personalitystartpage.php");
 }
-$O = (8 + $Q5 - $Q10 + $Q15 - $Q20 + $Q25 - $Q30 + $Q35 + $Q40 + $Q45 + $Q50);
-$C = (14 + $Q3 - $Q8 + $Q13 - $Q18 + $Q23 - $Q28 + $Q33 - $Q38 + $Q43 - $Q48);
-$E = (20 + $Q1 - $Q6 + $Q11 - $Q16 + $Q21 - $Q26 + $Q31 - $Q36 + $Q41 - $Q46);
-$A = (14 - $Q2 + $Q7 - $Q12 + $Q17 - $Q22 + $Q27 - $Q32 + $Q37 + $Q42 + $Q47);
-$N = (38 - $Q4 + $Q9 - $Q14 + $Q19 - $Q24 - $Q29 - $Q34 - $Q39 - $Q44 - $Q49);
+mysqli_close($conn);
 ?>
 
 </head>
-<link href="./assets/CSS/testpg.css" rel="stylesheet">
+
 
 <body>
-    <div class="container">
 </body>
 
 
-<div class="mx-0 mx-sm-auto">
-    <div class="card">
-        <div class="card-body">
-            <div class="text-center">
-                <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
-                <p>
-                    <strong>Personality Test</strong>
-                </p>
-                <p>
-                    Result
-                </p>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="75"
-                        aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                </div>
-            </div>
-            <hr />
-            <?php
-echo "O=" . $O . "<br>";
-echo "C=" . $C . "<br>";
-echo "E=" . $E . "<br>";
-echo "A=" . $A . "<br>";
-echo "N=" . $N . "<br>";
+<div class="container">
+    <br>
+    <?php
+echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is ".$personality."</div></h4></center>";
 ?>
-        </div>
-    </div>
+    <center>
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-    </html>
+    </center>
+
+    <hr>
+
+    <?php
+
+$numbers=array($O, $C, $E, $A, $N);
+rsort($numbers);
+
+
+$dataPoints = array( 
+    array("y" => $O, "label" => "Openness to Experience" ),
+    array("y" => $C, "label" => "Conscientiousness" ),
+    array("y" => $E, "label" => "Extroversion" ),
+    array("y" => $A, "label" => "Agreeableness" ),
+    array("y" => $N,"label" => "Neuroticism" ),
+);
+
+?>
+    <center>
+        <h4 class="display-6">Big Five Personality Trait Scores of Test</h4>
+    </center>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">O</th>
+                <th scope="col">C</th>
+                <th scope="col">E</th>
+                <th scope="col">A</th>
+                <th scope="col">N</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+                <td><?php echo $O?></td>
+                <td><?php echo $C?></td>
+                <td><?php echo $E?></td>
+                <td><?php echo $A?></td>
+                <td><?php echo $N?></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <hr>
+    <center>
+        <h4 class="display-6">Big Five Personality Traits Introduction</h4>
+    </center>
+    <br>
+    <dl class="row">
+        <dt class="col-sm-3 text-truncate">Openness to experience</dt>
+        <dd class="col-sm-9">
+            is the personality trait of seeking new experience and intellectual
+            pursuits. High scores may day dream a lot. Low scorers may be very down to earth.
+        </dd>
+
+        <dt class="col-sm-3  text-truncate">Conscientiousness</dt>
+        <dd class="col-sm-9">is the personality trait of being honest and hardworking. High scorers
+            tend to follow rules and prefer clean homes. Low scorers may be messy and cheat others.</dd>
+
+        <dt class="col-sm-3 text-truncate">Extroversion</dt>
+        <dd class="col-sm-9">is the personality trait of seeking fulfillment from sources outside the self or
+            in community. High scorers tend to be very social while low scorers prefer to work on their
+            projects alone.</dd>
+        <dt class="col-sm-3 text-truncate">Agreeableness</dt>
+        <dd class="col-sm-9">reflects much individuals adjust their behavior to suit others. High scorers
+            are typically polite and like people. Low scorers tend to 'tell it like it is'.</dd>
+        <dt class="col-sm-3 text-truncate">Neuroticism</dt>
+        <dd class="col-sm-9">is the personality trait of being emotional.</dd>
+
+
+        </center>
+
+
+
+    </dl>
+    </dd>
+    </dl>
+    <hr>
+    <center>
+        <button type="button" onclick="location.href='personalitystartpage.php'" class="btn btn-primary btn-lg">Redo 
+            Test</button>
+    </center>
+    <br>
+</div>
+</div>
+<script>
+window.onload = function() {
+
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: {
+            text: "Personality Test Result"
+        },
+        axisY: {
+            title: "Big Five Personality Traits"
+        },
+        data: [{
+            type: "column",
+            yValueFormatString: "#,##0.## scores",
+            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+        }]
+    });
+    chart.render();
+
+}
+</script>
+
+</html>

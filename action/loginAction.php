@@ -15,9 +15,9 @@
             if($rc2['password'] == $sha512psw){
                 // if($rc2['status'] == "Activated"){
                     $_SESSION["email"] = $_POST["email"];
+                    $_SESSION["userid"] = $rc2["userid"];
                     $_SESSION["firstname"] = $rc2["firstname"];
                     $_SESSION["lastname"] = $rc2["lastname"];
-
                     echo '<script type="text/javascript">';
                  echo 'window.location = "../mainpage.php";';
                     echo '</script>';  

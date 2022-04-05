@@ -47,7 +47,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
                      <a class="nav-link" href="mainpage.php">Home <span class="sr-only">(current)</span></a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="personalitystartpage.php">Personality Test</a>
+                     <a class="nav-link" href="testresultpg.php">Personality Test</a>
 
                  </li>
                  <li class="nav-item">
@@ -79,4 +79,3 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
              </span>
          </div>
      </nav>
-     

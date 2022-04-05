@@ -75,29 +75,29 @@ echo"
     if  ($_SESSION['Q1']==2){
         echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" / checked>
-        <label class=\"form-check-label\" for=\"radio2Example2\">
+        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" / checked>
+        <label class=\"form-check-label\" for=\"radio2Example3\">
             Neutral
         </label>
     </div>  ";}else{ echo"
         <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" />
-        <label class=\"form-check-label\" for=\"radio2Example2\">
+        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" />
+        <label class=\"form-check-label\" for=\"radio2Example3\">
             Neutral
         </label>
     </div>  ";       
 }; if  ($_SESSION['Q1']==3){
 echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" / checked>
-        <label class=\"form-check-label\" for=\"radio2Example3\">
+        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" / checked>
+        <label class=\"form-check-label\" for=\"radio2Example4\">
             Slightly
         </label>
     </div>
 ";}else{ echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" />
-        <label class=\"form-check-label\" for=\"radio2Example3\">
+        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" />
+        <label class=\"form-check-label\" for=\"radio2Example4\">
             Slightly
         </label>
     </div>       
@@ -106,16 +106,16 @@ echo"
 if ($_SESSION['Q1']==4){
     echo"
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" / checked>
-        <label class=\"form-check-label\" for=\"radio2Example4\">
+        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example5\" / checked>
+        <label class=\"form-check-label\" for=\"radio2Example5\">
             Agree
         </label>
     </div>
 </div>
 ";}else{ echo" 
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" />
-        <label class=\"form-check-label\" for=\"radio2Example4\">
+        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example5\" />
+        <label class=\"form-check-label\" for=\"radio2Example5\">
             Agree
         </label>
     </div>
