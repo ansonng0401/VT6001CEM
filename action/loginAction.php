@@ -18,6 +18,20 @@
                     $_SESSION["userid"] = $rc2["userid"];
                     $_SESSION["firstname"] = $rc2["firstname"];
                     $_SESSION["lastname"] = $rc2["lastname"];
+                    if(!empty($_POST["remember"])) {
+                        setcookie ("user_email",$_POST["email"],time()+ (10 * 365 * 24 * 60 * 60), "/", NULL);
+                        setcookie ("user_password",$_POST["password"],time()+ (10 * 365 * 24 * 60 * 60), "/", NULL);
+                        setcookie ("remember",$_POST["remember"],time()+ (10 * 365 * 24 * 60 * 60), "/", NULL);
+                    } else {
+                        if(isset($_COOKIE["user_email"])) {
+                         setcookie ("useremail","");
+                        }
+                        if(isset($_COOKIE["user_password"])) {
+                         setcookie ("user_password","");
+                        }
+                       }
+
+
                     echo '<script type="text/javascript">';
                  echo 'window.location = "../mainpage.php";';
                     echo '</script>';  
@@ -45,5 +59,3 @@
     mysqli_free_result($rs);
     mysqli_close($conn);
    ?>
-           
-

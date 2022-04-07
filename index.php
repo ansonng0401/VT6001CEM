@@ -32,18 +32,18 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
                 <span class="title">Login</span>
                 <form action="action/loginAction.php"  method="post">
                     <div class="input-field">
-                        <input type="email" placeholder="Enter your email"  name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct email address" required>
+                        <input type="email" placeholder="Enter your email" value="<?php if(isset($_COOKIE["user_email"])) { echo $_COOKIE["user_email"]; } ?>" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct email address" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password"  name= "password" class="password" placeholder="Enter your password" required>
+                        <input type="password"  name= "password" class="password"value="<?php if(isset($_COOKIE["user_password"])) { echo $_COOKIE["user_password"]; } ?>" placeholder="Enter your password" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
 
                     <div class="checkbox-text">
                         <div class="checkbox-content">
-                            <input type="checkbox" id="logCheck">
+                        <input type="checkbox" name="remember" id="remember" value="remember" <?php if(isset($_COOKIE["remember"])) { ?> checked <?php } ?>
                             <label for="logCheck" class="text">Remember me</label>
                         </div>
                         
