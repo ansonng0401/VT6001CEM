@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： localhost
--- 產生時間： 2022 年 04 月 13 日 19:57
+-- 產生時間： 2022 年 04 月 13 日 20:02
 -- 伺服器版本： 10.4.21-MariaDB
 -- PHP 版本： 7.4.27
 
@@ -76,7 +76,8 @@ INSERT INTO `userinfo` (`userid`, `email`, `firstname`, `lastname`, `gender`, `b
 INSERT INTO `userinfo` (`userid`, `email`, `firstname`, `lastname`, `gender`, `birth`, `password`, `image`, `personality`, `occupation`, `interests`) VALUES
 (19, 'ansonng0401@g.comdd', 'N1', 'cwn', 'Male', '2000-04-01', 'c43832c85bd2c24ead57bff678ee55ed74da64d8ea0f5f088689429733ba0ed6382871d6e2867bcaa53146450352dd2e61a437ddafe540801e4c89b24de31c49', NULL, 'NULL', 'Student', 'Sports'),
 (20, 'ansonng0401@gdasdasda.com', 'N1', 'cwn', 'Male', '2000-04-01', 'c43832c85bd2c24ead57bff678ee55ed74da64d8ea0f5f088689429733ba0ed6382871d6e2867bcaa53146450352dd2e61a437ddafe540801e4c89b24de31c49', NULL, 'NULL', 'Student', 'Sports'),
-(21, 'ansonng0401@g.comfsdfssdsfsd', 'N1', 'cwn', 'Male', '2000-04-01', 'c43832c85bd2c24ead57bff678ee55ed74da64d8ea0f5f088689429733ba0ed6382871d6e2867bcaa53146450352dd2e61a437ddafe540801e4c89b24de31c49', NULL, 'NULL', 'Student', 'Sports');
+(21, 'ansonng0401@g.comfsdfssdsfsd', 'N1', 'cwn', 'Male', '2000-04-01', 'c43832c85bd2c24ead57bff678ee55ed74da64d8ea0f5f088689429733ba0ed6382871d6e2867bcaa53146450352dd2e61a437ddafe540801e4c89b24de31c49', NULL, 'NULL', 'Student', 'Sports'),
+(22, 'pad@pad.com', 'padpad', 'padpad', 'Male', '2000-04-01', '3b24ffb7378beb22f0d5a8980b5f8a82df9daddf39486223fb7841ebe700bfa0ec19ca6eaddf90144936fc05624b50b07bc2b6168f973f0c4487edc388866e06', NULL, 'NULL', 'Accountant', 'Read');
 
 --
 -- 已傾印資料表的索引
@@ -105,7 +106,7 @@ ALTER TABLE `userinfo`
 -- 使用資料表自動遞增(AUTO_INCREMENT) `userinfo`
 --
 ALTER TABLE `userinfo`
-  MODIFY `userid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `userid` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
