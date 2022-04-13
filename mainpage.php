@@ -19,7 +19,7 @@
         $personality = $rc['personality'];
         $occupation = $rc['occupation'];
         $interests = $rc['interests'];
-        $image = $rc['image'];
+        $image=$rc['image'];
     }
 
     mysqli_free_result($rs);
@@ -31,78 +31,137 @@
 
  <br>
  <div class="container">
-     <?php if ($personality == "NULL") {
-            $personality = "There is no record, Please take the Personality Test.";
-            echo "<h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage.php'> Here </a>to do the test!</div></h5></center>";
-        }
-        ?>
+     <?php    if ($personality=="NULL"){
+        $personality="There is no record, Please take the Personality Test.";
+        echo "<h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage.php'> Here </a>to do the test!</div></h5></center>";
+
+    }
+    ?>
      <ul class="nav nav-tabs" id="myTab" role="tablist">
 
          <li class="nav-item">
-             <a class="nav-link active" id="Profile-tab" data-toggle="tab" href="#Profile" role="tab" aria-controls="Profile" aria-selected="true">User Profile</a>
+             <a class="nav-link active" id="Profile-tab" data-toggle="tab" href="#Profile" role="tab"
+                 aria-controls="Profile" aria-selected="true">User Profile</a>
          </li>
 
          <li class="nav-item">
-             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#UserImage" role="tab" aria-controls="UserImage" aria-selected="false">User Image</a>
+             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#UserImage" role="tab"
+                 aria-controls="UserImage" aria-selected="false">User Image</a>
          </li>
 
          <li class="nav-item">
-             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Password" role="tab" aria-controls="Password" aria-selected="false">Password</a>
+             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Password" role="tab" aria-controls="Password"
+                 aria-selected="false">Password</a>
          </li>
 
 
      </ul>
      <div class="tab-content" id="myTabContent">
          <div class="tab-pane fade show active" id="Profile" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+
+
+         <h4>User Image</h4>
+             <?php if(empty($image)){
+                         echo '<center><img src="./assets/image/defuserimage.png"  height="240" alt="user"></center>';
+ } else{
+    echo '<center><img src="data:image;base64,'.$image.'"  height="240" "alt="user"></center>';
+           }          ?>
+             <form class="form" id="form" action="./action/saveUserImageAction.php" enctype="multipart/form-data"
+                 method="post">
+
+                 <label for="exampleFormControlInput1">User Image Upload</label>
+                 <input type="file" id="image" name="image" class="form-control" accept=".jpg, .jpeg, .png" required />
+                 <small id="emailHelp" class="form-text text-muted">Only Alow JPG, JEPG and PNG Image Upload</small>
+                 <input type="hidden" name="id" value="<?php echo$_SESSION["userid"];?>">
+                 <input type="hidden" name="name" value="<?php echo$firstname?>">
+                 <br> <br>
+                 <center><input type="submit" class="btn btn-danger" value="Upload Image"></center>
+             </form>
+             <br>
+             <?php if(!empty($image)){
+?> <form action="./action/deleteUserImageAction.php" enctype="multipart/form-data" method="post">
+                 <input type="hidden" name="id" value="<?php echo$_SESSION["userid"];?>">
+                 <center><input type="submit" class="btn btn-warning" value="Delete Image"></center>
+             </form>
+             <?php
+
+             }?>
+         </div>
+
+
+
+         <div class="tab-pane fade" id="Password" role="tabpanel" aria-labelledby="Password-tab">
+             <br>
+             <h4>Edit User Password</h4>
+
+             <form method="POST" action="./action/saveUserPasswordAction.php">
+                 <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address "
+                     value="<?php echo $email ?>" readonly required>
+                 <label for="exampleFormControlInput1"> Old Password </label>
+                 <input type="password" class="form-control" name=oldpassword
+                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your old password"
+                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                     onkeypress="return ignoreSpaces(event)" required>
+                 <label for="exampleFormControlInput1"> New Password </label>
+                 <input type="password" class="form-control" name=newpassword
+                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password"
+                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                     onkeypress="return ignoreSpaces(event)" required>
+                 <label for="exampleFormControlInput1"> Confirm New Password </label>
+                 <input type="password" class="form-control" name=newpasswordConfirm
+                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password"
+                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+                     onkeypress="return ignoreSpaces(event)" required>
+                 <small id="passwordHelpInline" class="text-muted">
+                     Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more
+                     characters.
+                 </small>
+
+                 <br><br>
+                 <center><input type="submit" class="btn btn-danger" value="Save Password"></center>
+         </div>
+         </form>
+
+
+
+
+
+
+
+
              <form method="POST" action="./action/saveUserProfileAction.php" enctype="multipart/form-data">
                  <div class="form-group">
                      <BR>
                      <h4>Edit User Profile</h4>
 
-                     <br>
-                     <h4>User Image</h4>
-                     <?php if (empty($image)) {
-                            echo '<center><img src="./assets/image/defuserimage.png"  height="240" alt="user"></center>';
-                        } else {
-                            echo '<center><img src="data:image;base64,' . $image . '"  height="240" "alt="user"></center>';
-                        }          ?>
-                     <form class="form" id="form" action="./action/saveUserImageAction.php" enctype="multipart/form-data" method="post">
-
-                         <label for="exampleFormControlInput1">User Image Upload</label>
-                         <input type="file" id="image" name="image" class="form-control" accept=".jpg, .jpeg, .png" required />
-                         <small id="emailHelp" class="form-text text-muted">Only Alow JPG, JEPG and PNG Image Upload</small>
-                         <input type="hidden" name="id" value="<?php echo $_SESSION["userid"]; ?>">
-                         <input type="hidden" name="name" value="<?php echo $firstname ?>">     
-                        <input type="submit" class="btn btn-danger" value="Upload Image">
-                     </form>
-
-                            <?php if (!empty($image)) {?> 
-                        <form action="./action/deleteUserImageAction.php" enctype="multipart/form-data" method="post">
-                             <input type="hidden" name="id" value="<?php echo $_SESSION["userid"]; ?>">
-                           <input type="submit" class="btn btn-warning" value="Delete Image">
-                         </form>
-                    
-                     <?php
-
-                        } ?>
-
                      <label for="exampleFormControlInput1"> Email address</label>
-                     <input type="email" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" onkeypress="return ignoreSpaces(event)" readonly required>
+                     <input type="email" class="form-control" name="email" id="email" placeholder="User email address "
+                         value="<?php echo $email ?>" onkeypress="return ignoreSpaces(event)" readonly required>
                      <label for="exampleFormControlInput1"> First Name </label>
-                     <input type="text" class="form-control" name="firstname" id="firstname" placeholder="User Firstname " value="<?php echo $firstname ?>" onkeypress="return ignoreSpaces(event)" required>
+                     <input type="text" class="form-control" name="firstname" id="firstname"
+                         placeholder="User Firstname " value="<?php echo $firstname ?>"
+                         onkeypress="return ignoreSpaces(event)" required>
                      <label for="exampleFormControlInput1"> Last Name </label>
-                     <input type="text" class="form-control" name="lastname" id="lastname" placeholder="User Lastname " value="<?php echo $lastname ?>" onkeypress="return ignoreSpaces(event)" required>
+                     <input type="text" class="form-control" name="lastname" id="lastname" placeholder="User Lastname "
+                         value="<?php echo$lastname?>" onkeypress="return ignoreSpaces(event)" required>
                      <label for="exampleFormControlInput1"> Birth </label>
-                     <input type="date" class="form-control" name="birth" id="birth" placeholder="User Lastname " value="<?php echo $birth ?>" required>
+                     <input type="date" class="form-control" name="birth" id="birth" placeholder="User Lastname "
+                         value="<?php echo $birth ?>" required>
                      <label for="exampleFormControlInput1"> Gender </label><br>
                      <div class="form-check form-check-inline">
-                         <label><input class="form-check-input" type="radio" name="gender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : '' ?>>Male&nbsp;&nbsp;</label>
-                         <label><input class="form-check-input" type="radio" name="gender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : '' ?>>Female</label>
+                         <label><input class="form-check-input" type="radio" name="gender" value="Male"
+                                 <?php echo ($gender == 'Male') ? 'checked' : '' ?>>Male&nbsp;&nbsp;</label>
+                         <label><input class="form-check-input" type="radio" name="gender" value="Female"
+                                 <?php echo ($gender == 'Female') ? 'checked' : '' ?>>Female</label>
                      </div> <br>
                      <label for="exampleFormControlInput1"> Occupation </label>
 
-                     <select class="form-select " aria-label=".form-select-sm example" name="occupation" id="occupation" required>
-                         <option value="<?php echo $occupation ?>" disabled selected><?php echo $occupation ?></option>
+                     <select class="form-select " aria-label=".form-select-sm example" name="occupation" id="occupation"
+                         required>
+                         <option value="<?php echo $occupation ?>" disabled selected><?php echo $occupation?></option>
                          <option value="Accountant">Accountant</option>
                          <option value="Administrator">Administrator</option>
                          <option value="Advertising">Advertising</option>
@@ -186,8 +245,9 @@
 
                      <label for="exampleFormControlInput1"> Interests </label>
 
-                     <select class="form-select " aria-label=".form-select-sm example" name="interests" id="interests" required>
-                         <option value="<?php echo $interests ?>" selected disabled><?php echo $interests ?></option>
+                     <select class="form-select " aria-label=".form-select-sm example" name="interests" id="interests"
+                         required>
+                         <option value="<?php echo $interests ?>" selected disabled><?php echo $interests?></option>
                          <option value="Read">Read</option>
                          <option value="Sports">Sports</option>
                          <option value="Cooking">Cooking</option>
@@ -200,39 +260,16 @@
                          <option value="Pets">Pets</option>
                      </select>
                      <label for="exampleFormControlInput1"> Personality </label>
-                     <input type="text" class="form-control" name="personality" id="personality" placeholder="User personality " value="<?php echo $personality ?>" readonly required>
+                     <input type="text" class="form-control" name="personality" id="personality"
+                         placeholder="User personality " value="<?php echo $personality ?>" readonly required>
                  </div>
 
                  <center><input type="submit" class="btn btn-danger" value="Save Profile"></center>
              </form>
          </div>
          <div class="tab-pane fade" id="UserImage" role="tabpanel" aria-labelledby="UserImage-tab">
-
-         </div>
-
-
-
-         <div class="tab-pane fade" id="Password" role="tabpanel" aria-labelledby="Password-tab">
              <br>
-             <h4>Edit User Password</h4>
-
-             <form method="POST" action="./action/saveUserPasswordAction.php">
-                 <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" readonly required>
-                 <label for="exampleFormControlInput1"> Old Password </label>
-                 <input type="password" class="form-control" name=oldpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your old password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
-                 <label for="exampleFormControlInput1"> New Password </label>
-                 <input type="password" class="form-control" name=newpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
-                 <label for="exampleFormControlInput1"> Confirm New Password </label>
-                 <input type="password" class="form-control" name=newpasswordConfirm pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
-                 <small id="passwordHelpInline" class="text-muted">
-                     Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more
-                     characters.
-                 </small>
-
-                 <br><br>
-                 <center><input type="submit" class="btn btn-danger" value="Save Password"></center>
-         </div>
-         </form>
+ 
 
 
      </div>
@@ -246,8 +283,8 @@
 
  </div>
  <script>
-     function ignoreSpaces(event) {
-         var character = event ? event.which : window.event.keyCode;
-         if (character == 32) return false;
-     }
+function ignoreSpaces(event) {
+    var character = event ? event.which : window.event.keyCode;
+    if (character == 32) return false;
+}
  </script>
