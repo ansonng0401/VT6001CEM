@@ -21,6 +21,9 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
 
  </head>
 
+ <style>
+
+</style>
  <body>
 
      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -34,6 +37,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
          integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
      </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
      <nav class="navbar navbar-expand-lg navbar-light bg-light">
          <a class="navbar-brand" href="mainpage.php">Personalised Dating Matching</a>
@@ -51,7 +55,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
 
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="matching.php">Matching</a>
+                     <a class="nav-link" href="usermatching.php">Matching</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="chat.php">Chat</a>

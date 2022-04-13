@@ -44,7 +44,7 @@
             }elseif($rc2['password'] != $sha512psw){
   
                 echo '<script type="text/javascript">';
-                echo'alert("Login failed, wrong username and password, please try again！");';
+                echo'alert("Login failed, wrong password, please try again！");';
               echo 'window.location = "../index.php";';
                 echo '</script>'; 
             }
@@ -52,7 +52,7 @@
     }else{
 
         echo '<script type="text/javascript">';
-        echo'alert("Login failed, No registration for this user");';
+        echo'alert("Login failed, no registration record, please try again or sign up a new account!");';
       echo 'window.location = "../index.php";';
         echo '</script>'; 
     }

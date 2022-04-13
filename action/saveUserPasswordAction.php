@@ -20,7 +20,7 @@ echo $rc["password"];
   } 
   else if ($newpassword!= $newpasswordConfirm) {
     echo '<script type="text/javascript">';
-    echo 'alert("New Password Not Match, Please Try again");';
+    echo 'alert("New Password does not match with New confirm password, please input password Again!");';
     echo 'window.location = "../mainpage.php";';
     echo '</script>';
   } 

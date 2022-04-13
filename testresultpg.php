@@ -40,8 +40,9 @@ mysqli_close($conn);
 <div class="container">
     <br>
     <?php
-echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is ".$personality."</div></h4></center>";
+echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is ".$personality."</div></h5></center>";
 ?>
+
     <center>
         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
@@ -125,10 +126,7 @@ $dataPoints = array(
     </dd>
     </dl>
     <hr>
-    <center>
-        <button type="button" onclick="location.href='personalitystartpage.php'" class="btn btn-primary btn-lg">Redo 
-            Test</button>
-    </center>
+    <center><a href="personalitystartpage.php" class="btn btn-info" role="button">Redo Test</a> </center>
     <br>
 </div>
 </div>

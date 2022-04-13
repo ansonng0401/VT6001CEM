@@ -42,7 +42,7 @@
             echo '</script>';
         } elseif ($password != $confirmpassword) {
             echo '<script type="text/javascript">';
-            echo 'alert("Password not confirm, Please input password Again!");';
+            echo 'alert("Password does not match with confirm password, Please input password Again!");';
             echo 'window.location = "../signup.php";';
             echo '</script>';
         } elseif ($gender == "") {
@@ -60,13 +60,13 @@
             echo 'alert("Please select interests");';
             echo 'window.location = "../signup.php";';
             echo '</script>';
-        }
+        }else{
 
         $sql = "SELECT * FROM userinfo WHERE email = '$email'";
         $rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
         if (mysqli_num_rows($rs) > 0) {
             echo '<script type="text/javascript">';
-            echo 'alert("This email address is already registered !");';
+            echo 'alert("This email address is already registered, Please Login or try another email adddress register!");';
             echo 'window.location = "../signup.php";';
             echo '</script>';
         } else {
@@ -84,9 +84,11 @@
                 $_SESSION["userid"] = $rc['userid'];
         }
     }
-        echo '<script type="text/javascript">';
-        echo 'window.location = "../mainpage.php";';
-        echo '</script>';
+    echo '<script type="text/javascript">';
+    echo 'window.location = "../mainpage.php";';
+    echo '</script>';
+}
+
 
 
 
