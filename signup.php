@@ -15,7 +15,9 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <link rel="stylesheet" href="assets/CSS/signupstyle.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+          <meta name="format-detection" content="telephone=no">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

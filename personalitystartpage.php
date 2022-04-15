@@ -29,7 +29,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 <?php }else{echo "<Br><Br><Br><br>";}?>
 <center>
     <h4 class="display-6">Personality Test</h4>
-    <img src="./assets/image/BigFive.png" height="420">
+    <img src="./assets/image/BigFive.png" height="340px" width="330px">
 
 
 

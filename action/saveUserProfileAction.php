@@ -1,4 +1,5 @@
 <?php
+session_start();
 // ini_set('display_errors','off');
 if (isset($_POST['email'])) {
   extract($_POST);
@@ -16,7 +17,7 @@ if (isset($_POST['email'])) {
     $sql3 = 'UPDATE userinfo SET `occupation` = "'.$occupation.'" WHERE `email` = "'.$email.'"';
     mysqli_query($conn, $sql3);
     echo '<script type="text/javascript">';
-    echo 'alert("Edit User Profile Success! ");';
+    $_SESSION["edit_user_ok"] = 1;
     echo 'window.location = "../mainpage.php";';
     echo '</script>';
  
