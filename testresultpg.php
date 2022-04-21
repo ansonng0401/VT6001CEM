@@ -39,6 +39,12 @@ mysqli_close($conn);
 
 <div class="container">
     <br>
+    <nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Personality Test Result Page</li>
+  </ol>
+</nav>
     <?php
 echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is ".$personality."</div></h5></center>";
 ?>

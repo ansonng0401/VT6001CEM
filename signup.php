@@ -1,3 +1,20 @@
+<style>
+.disable-select {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Old version of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer or Edge */
+    user-select: none;
+    /* All modern browsers */
+}
+</style>
+<div class="disable-select">
 <?php session_start();
 if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSION["lastname"])) {
   header("Location: mainpage.php");
@@ -15,8 +32,8 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
   </script>
   <link rel="stylesheet" href="assets/CSS/signupstyle.css">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="format-detection" content="telephone=no">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -182,6 +199,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
         <div style="text-align: right;">Return to <a href="index.php">Login</div>
       </form>
     </div>
+  </div>
   </div>
   <script src="script.js"></script>
 

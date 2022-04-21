@@ -9,7 +9,7 @@ include('./action/conn.php');
 	if (isset($_POST["action"])) {
 		$query = "
 		SELECT * FROM userinfo WHERE 1=1";
-
+		$GET="";
 		if (isset($_POST["minimum_age"], $_POST["maximum_age"])  && !empty($_POST["maximum_age"])) {
 
 
@@ -22,18 +22,18 @@ include('./action/conn.php');
 			$nowYear = date("Y");
 			$maxageyear = $nowYear - $_POST["maximum_age"];
 
-
-			$query .= " AND birth BETWEEN '" . $maxageyear  . "-1-1 ' AND '" . $minageyear . "-12-31'
-		";
+			$query .= " AND birth BETWEEN '" . $maxageyear  . "-1-1 ' AND '" . $minageyear . "-12-31'";
+			$GET .= "&minimum_age=" . $_POST["minimum_age"]  . "&maximum_age" . $_POST["maximum_age"] . "";
 		}
 		if (isset($_POST["inter"])) {
 			$inter_filter = implode("','", $_POST["inter"]);
+			$inter_get = implode(",", $_POST["inter"]);
 			$query .= " AND interests IN('" . $inter_filter . "')";
+			$GET .= "&inter=" . $inter_get."";
 		}
 		if (isset($_POST["occ"])) {
 			$occ_filter = implode("','", $_POST["occ"]);
-			$query .= " AND occupation IN('" . $occ_filter . "')
-";
+			$query .= " AND occupation IN('" . $occ_filter . "')";
 		}
 		if (isset($_POST["personality"])) {
 			$personality_filter = implode("','", $_POST["personality"]);
@@ -47,7 +47,7 @@ include('./action/conn.php');
 		 AND gender IN('" . $gender_filter . "')
 		";
 		}
-
+		// echo$GET;
 		$statement = $connect->prepare($query);
 		$statement->execute();
 		$result = $statement->fetchAll();
@@ -56,9 +56,9 @@ include('./action/conn.php');
 		if ($total_row > 0) {
 			foreach ($result as $row) {
 				if (empty($row['image'])) {
-					$image='<img src="./assets/image/defuserimage.png" width=160px; height=185px" alt="user">';
+					$image='<center><img src="./assets/image/defuserimage.png" width=123px; height=140px" alt="user"></center>';
 				} else {
-					$image = '<img  src="data:image;base64,' . $row['image'] . '"  width=160px; height=185px" alt="user">';
+					$image = '<center><img  src="data:image;base64,' . $row['image'] . '"  width=123px; height=140px" alt="user"></center>';
 				}
 
 				$dateOfBirth = $row["birth"];
@@ -67,23 +67,71 @@ include('./action/conn.php');
 				$userage=$diff->format('%y');
 		
 				$output .= '
-			    <div class="col-sm-4 col-lg-3 col-md-3">
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:450px;">
+			    <div class="col-sm-4  ">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; ">
 					' . $image . '<br><br>
 					<h5 style="text-align:center;" >' . $row['firstname'].' '.$row['lastname'] . '</h4>
-					<p>Gender : ' . $row['gender'] . '<br />
-					Age : ' . $userage . ' <br />
-					Personality : ' . $row['personality'] . ' <br />
-					Occupation : ' . $row['occupation'] . '<br />
-					Interests : ' . $row['interests'] . ' </p>
+					<p><b>Gender : </b>' . $row['gender'] . '<br />
+					<b>Age :  </b>' . $userage . ' <br />
+					<b>Personality : </b>' . $row['personality'] . ' <br />
+					<b>Occupation : </b>' . $row['occupation'] . '<br />
+					<b>Interests </b>: ' . $row['interests'] . ' </p>
+					<center><a class="btn btn-success" href="#" role="button">Chat</a></center>
 				</div>
 
 			</div>
 			';
 			}
 		} else {
-			$output = '<h3>No Data Found</h3>';
+			$output = '<br><br><br><center><div class="alert alert-warning" role="alert">
+			No Match Users
+		  </div></center>';
 		}
 		echo $output;
 	}
+
+
 	?>
+
+<!-- 	
+<?php 
+  
+   if(isset($_GET['page']))
+   {
+       $page = $_GET['page'];
+   }
+   else
+   {
+       $page =1;
+   }
+
+   $num_per_page = 06;
+   $start_from = ($page-1)*05;
+
+
+// $sql = "select * from `userinfo`limit $start_from,$num_per_page";
+$sql = "SELECT *  FROM `userinfo`  limit $start_from,$num_per_page";
+;    
+
+  $pr_query = "select * from userinfo" ;
+  $pr_result = mysqli_query($conn,$pr_query);
+  $total_record = mysqli_num_rows($pr_result );
+  
+  $total_page = ceil($total_record/$num_per_page);
+
+  if($page>1) 
+  {
+	 echo "<a href='usermatching.php?page=".($page-1)."' class='btn btn-danger'>PREVIOUS</a>";
+  }
+
+  for($i = 1; $i < $total_page + 1; $i++) 
+  {
+	if($i==$page){
+	 echo "<a href='usermatching.php?page=".$i."'class='btn btn-outline-primary'>$i</a></li>";
+	  }else{
+		  echo "<a href='usermatching.php?page=".$i."' class='btn btn-primary'>$i</a>";
+	  }
+  }
+
+
+?> -->

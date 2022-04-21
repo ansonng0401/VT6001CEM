@@ -8,6 +8,12 @@ include 'header.php';
     <div class="container">
 </body>
 <br>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Start Test Page</li>
+  </ol>
+</nav>
 <?php
 require_once('./action/conn.php');
 $personalitysql = "SELECT * FROM  userinfo WHERE userid = '$_SESSION[userid]'";

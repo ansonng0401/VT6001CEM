@@ -1,4 +1,22 @@
+ 
  <!DOCTYPE html>
+ <style>
+.disable-select {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Old version of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer or Edge */
+    user-select: none;
+    /* All modern browsers */
+}
+</style>
+<div class="disable-select">
 
  <?php session_start();
 if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSION["lastname"])) {
@@ -10,7 +28,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
 
  <head>
      <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
      <meta name="format-detection" content="telephone=no">
 
@@ -54,11 +72,11 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
                      <a class="nav-link" href="mainpage.php">Home <span class="sr-only">(current)</span></a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="testresultpg.php">Personality Test</a>
+                     <a class="nav-link" href="personalitymainpage.php">Personality Test</a>
 
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="usermatching.php">Matching</a>
+                     <a class="nav-link" href="matchPG.php">Matching</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="chat.php">Chat</a>
