@@ -1,15 +1,13 @@
  <!DOCTYPE html>
 
  <style>
-.el-form {
+.el-form { 
     white-space: nowrap;
 }
  </style>
  <?php
-
     include 'header.php';
-
-    require_once('./action/conn.php');
+    include('./action/conn.php');
     $sql = "SELECT * FROM  userinfo WHERE email = '$_SESSION[email]'";
 
     $rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
@@ -107,6 +105,7 @@
              <?php unset($_SESSION["edit_user_ok"]);
              } ?>
                      <label for="exampleFormControlInput1"> Email address</label>
+                     
                      <input type="email" class="form-control" name="email" id="email" placeholder="User email address "
                          value="<?php echo $email ?>" onkeypress="return ignoreSpaces(event)" readonly required>
                      <label for="exampleFormControlInput1"> First Name </label>

@@ -1,169 +1,148 @@
-
-
- <?php 
- include 'header.php';
-
-
+<?php
+include 'header.php';
+include('./action/conn.php');
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="assets/CSS/chat.css">
-<!------ Include the above in your HEAD tag ---------->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-
-<html>
-<head>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet"
-
-</head>
-<body>
+<br>
 <div class="container">
-  <br>
-<h3 class=" text-center">Messaging</h3>
-<div class="messaging">
-      <div class="inbox_msg">
-        <div class="inbox_people">
-          <div class="headind_srch">
-            <div class="recent_heading">
-              <h4>Recent</h4>
-            </div>
-            <div class="srch_bar">
-              <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
-                <span class="input-group-addon">
-                <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-                </span> </div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="matchPG.php">Matching</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Chat</li>
+  </ol>
+</nav>
+  <div class="row">
+    <div class="col-md-4">
+
+      <p><?php echo $_SESSION['firstname']; ?> </p>
+      <input type="text" id="fromUser" value=<?php echo $_SESSION["userid"]; ?> hidden />
+      <p>//Send message</p>
+      <ul>
+        <?php
+        $sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
+
+        $msgs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+        while ($msg = mysqli_fetch_assoc($msgs)) {
+        ?>
+          <li><a href="?toUser=<?= $msg['userid']; ?>"><?= $msg['firstname']; ?> </a></li>
+
+        <?php
+        }
+        ?>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <?php
+            if (isset($_GET["toUser"])&&isset($_GET["firstname"])&&isset($_GET["lastname"])) {
+           
+              $userName =  "SELECT * FROM userinfo Where (userid = " . $_GET['toUser'] . " AND firstname = '" . $_GET["firstname"] .  "' AND lastname = '" . $_GET["lastname"]. "')";
+              $usersql = mysqli_query($conn, $userName) or die(mysqli_error($conn));
+              $uName = mysqli_fetch_assoc($usersql);
+              echo '<input type="Text" value=' . $_GET["toUser"] . ' id="toUser" hidden/>';
+              echo $uName["firstname"] . " " . $uName["lastname"];
+            } else {
+              echo "Go Match";
+            }
+            ?>
+          </div>
+          <div class="modal-body" id="msgBody" class="overflow-auto" style="height: 400px; overflow:auto;">
+            <?php
+            if (isset($_GET["toUser"])&&isset($_GET["firstname"])&&isset($_GET["lastname"])) {
+              $chatrecsql = "SELECT * FROM chatmessages Where (fromuser =" . $_SESSION['userid'] . " AND touser = " . $_GET["toUser"] . ")OR (fromuser =" . $_GET["toUser"] . " AND touser = " . $_SESSION['userid'] . ")";
+              $chatrec = mysqli_query($conn, $chatrecsql) or die(mysqli_error($conn));
+              while ($chat = mysqli_fetch_assoc($chatrec)) {
+                if ($chat["fromuser"] == $_SESSION['userid']) {
+                  echo "<div class='comments'style='text-align: right; '>
+                  <p style='background-color:lightblue; word-wrap: break-word;display:inline-block; padding: 5px; border-radius:10px; max width:70%;'>
+                  " . $chat["message"] . "
+                  </p>
+                  </div>";
+                } else {
+
+                  echo "<div class='comments'style='text-align: left;'>
+              <p style='background-color:yellow; word-wrap: break-word;display:inline-block; padding: 5px; border-radius:10px; max width:70%;'>
+              " . $chat["message"] . "
+              </p>
+              </div>";
+                }
+              }
+            } else {
+              echo "Go Match";
+            }
+            ?>
+            <?php
+            if (isset($_GET["toUser"])) {
+            ?></div>
+          <div class="form-group">
+
+            <div class="modal-footer">
+              <textarea id="message" class="form-control" style="width:72%;" required></textarea>
+              <button type="button" id="send" class="btn btn-primary" style="height:70%;">Send</button>
+              <p id="alert"></p>  
             </div>
           </div>
-          <div class="inbox_chat">
-            <div class="chat_list active_chat">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            <div class="chat_list">
-              <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5>Sunil Rajput <span class="chat_date">Dec 25</span></h5>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mesgs">
-          <div class="msg_history">
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test, which is a new approach to have</p>
-                  <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-              </div>
-            </div>
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Apollo University, Delhi, India Test</p>
-                <span class="time_date"> 11:01 AM    |    Today</span> </div>
-            </div>
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>We work directly with our designers and suppliers,
-                    and sell direct to you, which means quality, exclusive
-                    products, at a price anyone can afford.</p>
-                  <span class="time_date"> 11:01 AM    |    Today</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="type_msg">
-            <div class="input_msg_write">
-              <input type="text" class="write_msg" placeholder="Type a message" />
-              <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-            </div>
-          </div>
+        <?php
+            }; ?>
+
+        </h5>
         </div>
       </div>
-            
-    </div></div>
+      </body>
+      <script type="text/javascript">
+        $(document).ready(function() {
+         
+          $("#msgBody").animate({
+        scrollTop: $("#msgBody").get(0).scrollHeight
+    }, 500);
 
+          $("#msgBody").click(function() {
+            var height = $(this).prop("scrollHeight");
+            $(this).scrollTop(height, 100);
+          })
 
-    
-    </body>
-    </html>
+          $("#send").on("click", function() {
+            const inpObj = document.getElementById("message");
+            if (!inpObj.checkValidity()) {
+              document.getElementById("alert").innerHTML = inpObj.validationMessage;
+            } else {
+              $.ajax({
+                url: "./action/chatsendmessage.php",
+                method: "POST",
+                data: {
+                  fromuser: $("#fromUser").val(),
+                  touser: $("#toUser").val(),
+                  message: $("#message").val()
+                },
+                dateType: "text",
+                success: function(data) {
+                  $('#message').val("")     
+                }
+              });
+            }
+          });
+
+          setInterval(function() {
+            $.ajax({
+              url: "./action/realTimeChat.php",
+              method: "POST",
+              data: {
+                fromuser: $("#fromUser").val(),
+                touser: $("#toUser").val()
+              },
+              dataType: "Text",
+              success: function(data) {
+                $("#msgBody").html(data)
+                    
+              }
+            });
+          }, 700);
+        });
+      </script>
+
+      </html>

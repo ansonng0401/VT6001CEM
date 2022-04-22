@@ -36,8 +36,9 @@ if ((isset($_POST[$RQ]))) {
                                                 <div class="progress">
                     <div class="progress-bar progress-bar-striped bg-success" role="progressbar" aria-valuenow="75"
                         aria-valuemin="0" aria-valuemax="100" style="width: 72%"></div>
-                </div>
+                        </div>
             </div>
+            <hr />
             <?php 
 if (isset($_SESSION[$Q])) {
     echo"

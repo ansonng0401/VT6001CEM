@@ -9,69 +9,50 @@ require_once('./action/conn.php');
 $personalitysql = "SELECT * FROM  userinfo WHERE userid = '$_SESSION[userid]'";
 $rs = mysqli_query($conn, $personalitysql) or die(mysqli_error($conn));
 while ($rc = mysqli_fetch_assoc($rs)) {
-$personality = $rc['personality'];
+    $personality = $rc['personality'];
 }
 mysqli_free_result($rs);
 $personalitytestresultsql = "SELECT * FROM  personalitytestresult WHERE userid = '$_SESSION[userid]'";
 $rs1 = mysqli_query($conn, $personalitytestresultsql) or die(mysqli_error($conn));
 while ($rc = mysqli_fetch_assoc($rs1)) {
-$O = $rc['O'];
-$C = $rc['C'];
-$E = $rc['E'];
-$A = $rc['A'];
-$N = $rc['N'];}
+    $O = $rc['O'];
+    $C = $rc['C'];
+    $E = $rc['E'];
+    $A = $rc['A'];
+    $N = $rc['N'];
+}
 
 extract($_SESSION);
-if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$personality=="Extroversion"||$personality=="Agreeableness"||$personality=="Neuroticism") {
-}else{
-
-    header("Location: ./personalitystartpage.php");
-}
-mysqli_close($conn);
+if ($personality == "Openness to Experience" || $personality == "Conscientiousness" || $personality == "Extroversion" || $personality == "Agreeableness" || $personality == "Neuroticism") {
 ?>
-
-</head>
-
 
 <body>
 </body>
-
-
 <div class="container">
     <br>
     <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Personality Test Result Page</li>
-  </ol>
-</nav>
-    <?php
-echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is ".$personality."</div></h5></center>";
-?>
-
-    <center>
-        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-
-    </center>
-
-    <hr>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Personality Test Result & Information Page</li>
+        </ol>
+    </nav>
 
     <?php
+    echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is " . $personality . "</div></h5></center>";
+    
+    $numbers = array($O, $C, $E, $A, $N);
+    rsort($numbers);
 
-$numbers=array($O, $C, $E, $A, $N);
-rsort($numbers);
 
+    $dataPoints = array(
+        array("y" => $O, "label" => "Openness to Experience"),
+        array("y" => $C, "label" => "Conscientiousness"),
+        array("y" => $E, "label" => "Extroversion"),
+        array("y" => $A, "label" => "Agreeableness"),
+        array("y" => $N, "label" => "Neuroticism"),
+    );
 
-$dataPoints = array( 
-    array("y" => $O, "label" => "Openness to Experience" ),
-    array("y" => $C, "label" => "Conscientiousness" ),
-    array("y" => $E, "label" => "Extroversion" ),
-    array("y" => $A, "label" => "Agreeableness" ),
-    array("y" => $N,"label" => "Neuroticism" ),
-);
-
-?>
+    ?>
     <center>
         <h4 class="display-6">Big Five Personality Trait Scores of Test</h4>
     </center>
@@ -88,16 +69,50 @@ $dataPoints = array(
         <tbody>
             <tr>
 
-                <td><?php echo $O?></td>
-                <td><?php echo $C?></td>
-                <td><?php echo $E?></td>
-                <td><?php echo $A?></td>
-                <td><?php echo $N?></td>
+                <td><?php echo $O ?></td>
+                <td><?php echo $C ?></td>
+                <td><?php echo $E ?></td>
+                <td><?php echo $A ?></td>
+                <td><?php echo $N ?></td>
             </tr>
 
         </tbody>
     </table>
-    <hr>
+    
+    <hr>    </head>
+
+
+<center>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</center>
+
+<hr>
+    <?php
+} else {?>
+<div class="container">
+    <br>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Personality Test Result & Information Page</li> 
+        </ol>
+    </nav>
+
+    <h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage.php'> Here </a>to do the test!</div></h5></center>
+<center><img src="./assets/image/BigFive2.png"  class="img-fluid" alt="Responsive image" width="400" height="300"></center>
+
+    <?php
+};?>
+
+
+ 
+
+
+
+
+
     <center>
         <h4 class="display-6">Big Five Personality Traits Introduction</h4>
     </center>
@@ -131,32 +146,32 @@ $dataPoints = array(
     </dl>
     </dd>
     </dl>
-    <hr>
+    <!-- <hr>
     <center><a href="personalitystartpage.php" class="btn btn-info" role="button">Redo Test</a> </center>
-    <br>
-</div>
-</div>
-<script>
-window.onload = function() {
+    <br> -->
+    </div>
+    </div>
+    <script>
+        window.onload = function() {
 
-    var chart = new CanvasJS.Chart("chartContainer", {
-        animationEnabled: true,
-        theme: "light2",
-        title: {
-            text: "Personality Test Result"
-        },
-        axisY: {
-            title: "Big Five Personality Traits"
-        },
-        data: [{
-            type: "column",
-            yValueFormatString: "#,##0.## scores",
-            dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-        }]
+            var chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                theme: "light2",
+                title: {
+                    text: "Personality Test Result"
+                },
+                axisY: {
+                    title: "Big Five Personality Traits"
+                },
+                data: [{
+                    type: "column",
+                    yValueFormatString: "#,##0.## scores",
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+    }]
     });
     chart.render();
 
-}
-</script>
+    }
+    </script>
 
-</html>
+    </html>

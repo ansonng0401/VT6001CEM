@@ -11,7 +11,7 @@ include 'header.php';
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Start Test Page</li>
+    <li class="breadcrumb-item active" aria-current="page">Start Test</li>
   </ol>
 </nav>
 <?php
@@ -27,11 +27,11 @@ extract($_SESSION);
 mysqli_close($conn);
 if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$personality=="Extroversion"||$personality=="Agreeableness"||$personality=="Neuroticism") {
 ?>
-<div class="alert alert-info" role="alert">
+ <h4><div class="alert alert-info" role="alert">
     <center>
-        <h4>Your Personality is <?=$personality?></h4>
+       Your Personality is <?=$personality?>
     </center>
-</div>
+</div></h4>
 <?php }else{echo "<Br><Br><Br><br>";}?>
 <center>
     <h4 class="display-6">Personality Test</h4>

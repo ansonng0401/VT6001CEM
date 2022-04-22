@@ -47,7 +47,20 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
         <h5>Your Personality is <?=$personality?></h5>
     </center>
 </div>
-<?php }else{echo "";}?>
+<?php }else{ 
+    
+    ?>
+    <center>
+    <h4 class="display-6">Personality Test Main Page</h4>
+
+</center>
+<div class="alert alert-danger" role="alert">
+    <center>
+        <h5>Please Do The Personality Test</h5>
+    </center>
+</div>
+<?php
+;}?>
 
 
 
@@ -57,7 +70,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 <button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='personalitystartpage.php'">Start Test</button>
 <Br>
 <br>
-<button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='testresultpg.php'">View Result</button>
+<button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='testresultpg.php'">Personality Informations & Result</button>
 
 </center>
 </div>
