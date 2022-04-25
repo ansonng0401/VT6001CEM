@@ -262,16 +262,18 @@ include('./action/conn.php');
           Recent Chat History
           <ul class="friend-list">
             <?php
-            $sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
-
+            //$sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
+            $sql="select *
+            from userinfo , chatmessages c
+            where userid = touser and userid != ".$_SESSION['userid']." and id in (select max(id) from chatmessages group by touser)";
             $msgs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
             while ($msg = mysqli_fetch_assoc($msgs)) {
               // $showmessage = "SELECT * FROM chatmessages Where (fromuser =" . $_SESSION['userid'] . " AND touser = " .  $msg['userid'] . ")OR (fromuser =" .  $msg['userid'] . " AND touser = " . $_SESSION['userid']  . " order by id desc limit 1) ";
-
+              
             ?>
             
               <li>
-                <a href="#" class="clearfix">
+                <a href="chat.php?toUser=<?=$msg['userid']?>&firstname=<?=$msg['firstname']?>&lastname=<?=$msg['lastname']?>" class="clearfix">
                   <?php
                   if (empty($msg['image'])) {
                     $image = '<center><img src="./assets/image/defuserimage.png" class="img-circle" alt="user"></center>';
@@ -285,12 +287,13 @@ include('./action/conn.php');
                     <strong><?= $msg['firstname']; ?> <?= $msg['lastname']; ?></strong>
 
                   </div>
-                  <div class="last-message text-muted">Text</div>
+                  <div class="last-message text-muted"><?=$msg['message']?></div>
                   <!-- <small class="time text-muted">5 mins ago</small> -->
                   <!-- <small class="chat-alert text-muted"><i class="fa fa-check"></i></small> -->
                 </a>
               </li>
             <?php
+            
             }
 
             ?>

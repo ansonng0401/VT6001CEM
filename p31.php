@@ -6,9 +6,8 @@ include 'header.php';
 <link href="./assets/CSS/testpg.css" rel="stylesheet">
 
 <body>
-    <div class="container">
+    <div class="size">
 </body>
-
 
 <?php
 $Q="Q31";
