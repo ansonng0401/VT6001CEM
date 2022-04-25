@@ -47,4 +47,5 @@ if ($O==$max)
              }
         
         header("Location: ../testresultpg.php");
+        mysqli_close($conn);
 ?>

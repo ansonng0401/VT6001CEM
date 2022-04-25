@@ -38,7 +38,7 @@ if ($personality == "Openness to Experience" || $personality == "Conscientiousne
     </nav>
 
     <?php
-    echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is " . $personality . "</div></h5></center>";
+    echo "<h5><div class='alert alert-warning' role='alert'><Center>Your personality is " . $personality . "</div></h5></center> <hr>";
     
     $numbers = array($O, $C, $E, $A, $N);
     rsort($numbers);
@@ -146,9 +146,11 @@ if ($personality == "Openness to Experience" || $personality == "Conscientiousne
     </dl>
     </dd>
     </dl>
-    <!-- <hr>
-    <center><a href="personalitystartpage.php" class="btn btn-info" role="button">Redo Test</a> </center>
-    <br> -->
+ <hr>
+ <p align="right">
+ <button onclick="window.print()" class="btn btn-info" >Print <i class="fa fa-print"></i></button>
+ </p>
+
     </div>
     </div>
     <script>

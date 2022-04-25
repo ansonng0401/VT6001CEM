@@ -1,10 +1,6 @@
  <!DOCTYPE html>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <style>
-
-     body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 .disable-select {
     -webkit-touch-callout: none;
     /* iOS Safari */
@@ -18,30 +14,48 @@
     /* Internet Explorer or Edge */
     user-select: none;
 
-    /* All modern browsers */}
+    /* All modern browsers */
+}
 
-    #myBtn {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: #6379C1; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 18px; /* Increase font size */
+#myBtn {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Fixed/sticky position */
+    bottom: 20px;
+    /* Place the button at the bottom of the page */
+    right: 30px;
+    /* Place the button 30px from the right */
+    z-index: 99;
+    /* Make sure it does not overlap */
+    border: none;
+    /* Remove borders */
+    outline: none;
+    /* Remove outline */
+    background-color: #6379C1;
+    /* Set a background color */
+    color: white;
+    /* Text color */
+    cursor: pointer;
+    /* Add a mouse pointer on hover */
+    padding: 15px;
+    /* Some padding */
+    border-radius: 10px;
+    /* Rounded corners */
+    font-size: 18px;
+    /* Increase font size */
 }
 
 
 
 #myBtn:hover {
-  background-color: #555;
+    background-color: #555;
 }
 
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+}
  </style>
  <div class="disable-select">
 
@@ -66,7 +80,7 @@
              integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
              crossorigin="anonymous">
          </script>
-         <title>Personalised Dating Matching</title>
+         <title>Personality Love Matching</title>
 
 
      </head>
@@ -97,7 +111,9 @@
              crossorigin="anonymous"></script>
 
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-             <a class="navbar-brand" href="mainpage.php">Personalised Dating Matching</a>
+         <div class="container">
+
+             <a class="navbar-brand" href="mainpage.php">Personality Love Match</a>
              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                  aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
@@ -112,53 +128,66 @@
 
                      </li>
                      <li class="nav-item">
-                         <a class="nav-link" href="matchPG.php">Matching</a>
+                         <a class="nav-link" href="matchingmainpage.php">Matching</a>
                      </li>
                      <li class="nav-item">
                          <a class="nav-link" href="chat.php">Chat</a>
                      </li>
                  </ul>
 
+                 <ul class="navbar-nav  my-2 ">
 
 
-                 <span class="navbar-text">
-                 <i style="font-size:18px" class="fa">&#xf2bd;</i>
-                  <?php
-                                    echo $_SESSION['firstname'];
-                                    echo ' ';
-                                    echo $_SESSION['lastname'];
+                     <li class="nav-item">
 
-                                    ?>
-                     &nbsp
+                         <span class="navbar-text form-inline ">
+
+
+                             <i style="font-size:18px" class="fa">&#xf2bd;</i>
+                             <?php
+                                echo $_SESSION['firstname'];
+                                echo ' ';
+                                echo $_SESSION['lastname'];
+
+                                ?>
+                             &nbsp
+                     </li>
+                     <!-- <li class="nav-item">
+                              <a class="nav-link" href="favorite.php"> <i style="font-size:18px" class="fa fa-heart"></i> Favorite</a>
+                     </li> -->
+                 </ul>
                  </span>
 
                  <span class="navbar-text">
                      <input type="button" onclick="location.href='./action/logoutAction.php'" class="btn btn-info"
                          value="Logout" />
 
-                 </span>
+
              </div>
          </nav>
- <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+    </div>
+         <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-arrow-up"
+                 aria-hidden="true"></i></button>
          <script>
+         //Get the button
+         var mybutton = document.getElementById("myBtn");
 
-//Get the button
-var mybutton = document.getElementById("myBtn");
+         // When the user scrolls down 20px from the top of the document, show the button
+         window.onscroll = function() {
+             scrollFunction()
+         };
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+         function scrollFunction() {
+             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                 mybutton.style.display = "block";
+             } else {
+                 mybutton.style.display = "none";
+             }
+         }
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script> 
+         // When the user clicks on the button, scroll to the top of the document
+         function topFunction() {
+             document.body.scrollTop = 0;
+             document.documentElement.scrollTop = 0;
+         }
+         </script>

@@ -15,13 +15,17 @@ include('conn.php');
 
 if ($conn->query($sql) === TRUE) {
   $output.="";
+  mysqli_close($conn);
+
 } else {
   $output.="Error Please Try Again";
+  mysqli_close($conn);
+
 }
 echo $output;
 
 } else {
-  header("Location: ../error.php");
+ 
 }
 ?>
 

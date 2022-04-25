@@ -4,6 +4,7 @@
 .el-form { 
     white-space: nowrap;
 }
+
  </style>
  <?php
     include 'header.php';

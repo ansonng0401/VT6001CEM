@@ -119,8 +119,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 
 <?
 }
-?>
-
+?><br><br><br>
 </div>
 </div>
 </div>

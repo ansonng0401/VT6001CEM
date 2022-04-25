@@ -28,11 +28,13 @@ echo $rc["password"];
  else { 
   $sql = 'UPDATE userinfo SET `password` = "'.$sha512psw.'"WHERE `email` = "'.$email.'"';
     mysqli_query($conn, $sql);
+    mysqli_close($conn);
     echo '<script type="text/javascript">';
     echo 'alert("Save Password Success! ");';
     echo 'window.location = "../mainpage.php";';
     echo '</script>';
   }
 }else
+mysqli_close($conn);
 header("Location: ../error.php"); 
 ?>

@@ -44,6 +44,7 @@ if (isset($_POST['upload_image'])) {
       mysqli_query($conn, $query);      
       $_SESSION["update_image_message"] = "Upload Image Success!";
       $_SESSION["update_image_message_color"] = "success";
+          mysqli_close($conn);
       echo
       "     <script>
           document.location.href = '../mainpage.php';
@@ -61,10 +62,10 @@ if (isset($_POST['upload_image'])) {
     mysqli_query($conn, $query);
     $_SESSION["update_image_message_color"] = "success";
     $_SESSION["update_image_message"] = "Remove Image Success!";
+    mysqli_close($conn);
     echo '<script type="text/javascript">';
     echo 'window.location = "../mainpage.php";';
     echo '</script>'; 
   }else
   header("Location: ../error.php");
 }
-?>

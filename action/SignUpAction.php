@@ -84,9 +84,11 @@
                 $_SESSION["userid"] = $rc['userid'];
         }
     }
+    mysqli_close($conn);
     echo '<script type="text/javascript">';
     echo 'window.location = "../mainpage.php";';
     echo '</script>';
+
 }
 
 
