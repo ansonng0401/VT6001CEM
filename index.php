@@ -36,7 +36,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
     <!-- ===== CSS ===== -->
     <link rel="stylesheet" href="assets/CSS/loginstyle.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>Personalised Dating Matching</title>
+    <title>Personality Love Matching</title>
 </head>
 <div class="disable-select">
 <body>
@@ -44,7 +44,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
     <div class="container">
         <div class="forms">
             <div class="form login">
-                <center><span class="Logotitle">Personalised Dating Matching</span><br></center>
+                <center><span class="Logotitle">Personality Love Matching</span><br></center>
                 <span class="title">Login</span>
                 <form action="action/loginAction.php"  method="post">
                     <div class="input-field">

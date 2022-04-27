@@ -73,14 +73,14 @@ if (isset($_POST["action"])) {
 				<input type="hidden" name="action" id="action" value="deletefavourite" />
 				<input type="hidden" name="userid" id="userid" value='.$_SESSION['userid'].' />
 				<input type="hidden" name="addfavuserid"  id="addfavuserid" value='.$row['userid'].' />
-				<input type="submit" class="btn btn-outline-danger" value="♡ Favourite" ></form>';
+				<input type="submit" class="btn btn-outline-danger" value="♡ Favorite" ></form>';
 			}else{
 				$fav='
 				<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
 				<input type="hidden" name="action" id="action" value="addfavourite" />
 				<input type="hidden" name="userid" id="userid" value='.$_SESSION['userid'].' />
 				<input type="hidden" name="addfavuserid"  id="addfavuserid" value='.$row['userid'].' />
-				<input type="submit" class="btn btn-outline-dark" value="♡ Favourite" ></form>';
+				<input type="submit" class="btn btn-outline-dark" value="♡ Favorite" ></form>';
 			}
 
 

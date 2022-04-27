@@ -381,7 +381,7 @@ include('./action/conn.php');
                                 $("#chat-message").html(data)
                             }
                         });
-                    }, 700);
+                    }, 500);
                 });
             </script>
             </body>

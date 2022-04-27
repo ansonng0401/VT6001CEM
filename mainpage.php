@@ -229,7 +229,7 @@
          <div class="tab-pane fade" id="Password" role="tabpanel" aria-labelledby="Password-tab">
              <br>
              <h4>Edit User Password</h4>
-
+      
              <form method="POST" action="./action/saveUserPasswordAction.php">
                  <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" readonly required>
                  <label for="exampleFormControlInput1"> Old Password </label>

@@ -13,6 +13,7 @@ include 'header.php';
     <h4 class="display-6">Favorite List</h4>
 </center>
 
+
 <?php
 
 include('./action/conn.php');
@@ -27,7 +28,7 @@ $row = mysqli_num_rows($rs);
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  echo"<h5>&nbsp;&nbsp;&nbsp;Count of Favourite Users:  ".$row."<br> <div class='card-group'></h5>";
+  echo"<h5>&nbsp;&nbsp;&nbsp;Count of Favourite Users:  ".$row."<br> </h5> <div class='row align-items-start'> ";
     while($row = $result->fetch_assoc()) {
   
       $today = date("Y-m-d");
@@ -38,9 +39,9 @@ if ($result->num_rows > 0) {
         $image = '<center><img  src="data:image;base64,' . $row['image'] . '"  width=123px; height=140px" alt="user"></center>';
       }  
       ?>
- 
-        <div class="col-sm-4">
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; ">
+
+<div class="col-4">
+				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px;">
         <?=$image?><br>
 					<h5 style="text-align:center;" ><?=$row["firstname"]?> <?=$row["lastname"]?></h4>
 					<p><b>Gender : </b><?=$row["gender"]?><br />
@@ -48,7 +49,7 @@ if ($result->num_rows > 0) {
 					<b>Personality : </b><?=$row['personality']?><br />
 					<b>Occupation : </b><?=$row['occupation'] ?><br />
 					<b>Interests </b>: <?=$row['interests'] ?></p>
-					<center><a class="btn btn-success" href="chat.php?toUser=<?=$row['addfavuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a> <a class="btn btn-success" href="./action/removefavlist.php?userid=<?=$_SESSION['userid']?>&addfavuserid=<?=$row['addfavuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>">♡ UnFavorite</a></center>
+					<center><a class="btn btn-outline-success" href="chat.php?toUser=<?=$row['addfavuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a> <a class="btn btn-outline-danger" href="./action/removefavlist.php?userid=<?=$_SESSION['userid']?>&addfavuserid=<?=$row['addfavuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>">♡ UnFavorite</a></center>
 				</div>
         </div>
        
