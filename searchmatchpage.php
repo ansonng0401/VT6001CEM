@@ -25,7 +25,7 @@ include('./action/conn.php');
     <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="matchingmainpage.php">Matching Home Page</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Random Matching</li>
+    <li class="breadcrumb-item active" aria-current="page"><i class="fa">&#xf002;</i> Search & Filter</li>
   </ol>
 </nav>
             <di

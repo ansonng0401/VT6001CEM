@@ -39,7 +39,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 ?>
 
 <center>
-    <h4 class="display-6">Matching Main Page</h4>
+    <h4 class="display-6">Matching Home Page</h4>
 
 </center>
 <div class="alert alert-info" role="alert">
@@ -72,7 +72,7 @@ Random Matching</button>
 <Br>
 <br>
 <button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='searchmatchpage.php'"><i class="fa fa-search" aria-hidden="true"></i>
-Search/Filter</button>
+Search & Filter</button>
 
 </center>
 </div>

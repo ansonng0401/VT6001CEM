@@ -39,7 +39,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 ?>
 
 <center>
-    <h4 class="display-6">Personality Test Main Page</h4>
+    <h4 class="display-6">Personality Home Page</h4>
 
 </center>
 <div class="alert alert-info" role="alert">
@@ -51,7 +51,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
     
     ?>
     <center>
-    <h4 class="display-6">Personality Test Main Page</h4>
+    <h4 class="display-6">Personality Home Page</h4>
 
 </center>
 <div class="alert alert-danger" role="alert">
@@ -67,7 +67,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 
 <center>
 <Br>
-<button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='personalitystartpage.php'">Start Test</button>
+<button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='personalitystartpage.php'">Personality Test</button>
 <Br>
 <br>
 <button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='testresultpg.php'">Personality Informations & Result</button>

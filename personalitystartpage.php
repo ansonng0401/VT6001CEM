@@ -11,7 +11,7 @@ include 'header.php';
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Start Test</li>
+    <li class="breadcrumb-item active" aria-current="page">Personality Test</li>
   </ol>
 </nav>
 <?php

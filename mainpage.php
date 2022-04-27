@@ -1,10 +1,9 @@
  <!DOCTYPE html>
 
  <style>
-.el-form { 
-    white-space: nowrap;
-}
-
+     .el-form {
+         white-space: nowrap;
+     }
  </style>
  <?php
     include 'header.php';
@@ -42,13 +41,11 @@
      <ul class="nav nav-tabs" id="myTab" role="tablist">
 
          <li class="nav-item">
-             <a class="nav-link active" id="Profile-tab" data-toggle="tab" href="#Profile" role="tab"
-                 aria-controls="Profile" aria-selected="true">User Profile</a>
+             <a class="nav-link active" id="Profile-tab" data-toggle="tab" href="#Profile" role="tab" aria-controls="Profile" aria-selected="true">User Profile</a>
          </li>
 
          <li class="nav-item">
-             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Password" role="tab" aria-controls="Password"
-                 aria-selected="false">Password</a>
+             <a class="nav-link" id="contact-tab" data-toggle="tab" href="#Password" role="tab" aria-controls="Password" aria-selected="false">Password</a>
          </li>
 
 
@@ -61,22 +58,21 @@
 
 
              <h4>User Image</h4>
-             <?php if(isset($_SESSION["update_image_message"])){?>
-             <h5>
-                 <div class='alert alert-<?=$_SESSION["update_image_message_color"]?>'>
-                     <Center><?=$_SESSION["update_image_message"]?>
-                 </div>
-             </h5>
-             </center>
+             <?php if (isset($_SESSION["update_image_message"])) { ?>
+                 <h5>
+                     <div class='alert alert-<?= $_SESSION["update_image_message_color"] ?>'>
+                         <Center><?= $_SESSION["update_image_message"] ?>
+                     </div>
+                 </h5>
+                 </center>
              <?php unset($_SESSION["update_image_message"]);
-             } ?>
+                } ?>
              <?php if (empty($image)) {
                     echo '<center><img src="./assets/image/defuserimage.png"  height="240" alt="user"></center>';
                 } else {
                     echo '<center><img src="data:image;base64,' . $image . '"  height="240" "alt="user"></center>';
                 }          ?>
-             <form class="form" id="form" action="./action/saveUserImageAction.php" enctype="multipart/form-data"
-                 method="post" style="margin:0px;display:inline;">
+             <form class="form" id="form" action="./action/saveUserImageAction.php" enctype="multipart/form-data" method="post" style="margin:0px;display:inline;">
 
                  <label for="exampleFormControlInput1">User Image Upload</label>
                  <input type="file" id="image" name="image" class="form-control" accept=".jpg, .jpeg, .png" />
@@ -84,9 +80,9 @@
                  <input type="hidden" name="id" value="<?php echo $_SESSION["userid"]; ?>">
                  <input type="hidden" name="name" value="<?php echo $firstname ?>">
                  <?php if (!empty($image)) {
-                    echo '<input type="submit" class="btn btn-warning" value="Delete Image" name="delete_image">';
-                }          ?>
-                 <input type="submit" class="btn btn-danger" value="Upload Image" name="upload_image">
+                        echo '<input type="submit" class="btn btn-danger" value="Delete Image" name="delete_image">';
+                    }          ?>
+                 <input type="submit" class="btn btn-success" value="Upload Image" name="upload_image">
              </form>
 
 
@@ -95,42 +91,34 @@
                  <div class="form-group">
                      <BR>
                      <h4>Edit User Profile</h4>
-                     <?php if(isset($_SESSION["edit_user_ok"])){?>
-             <br>
-             <h5>
-                 <div class='alert alert-success' role='alert'>
-                     <Center>Edit User Profile Success!
-                 </div>
-             </h5>
-             </center>
-             <?php unset($_SESSION["edit_user_ok"]);
-             } ?>
+                     <?php if (isset($_SESSION["edit_user_ok"])) { ?>
+                         <br>
+                         <h5>
+                             <div class='alert alert-success' role='alert'>
+                                 <Center>Edit User Profile Success!
+                             </div>
+                         </h5>
+                         </center>
+                     <?php unset($_SESSION["edit_user_ok"]);
+                        } ?>
                      <label for="exampleFormControlInput1"> Email address</label>
-                     
-                     <input type="email" class="form-control" name="email" id="email" placeholder="User email address "
-                         value="<?php echo $email ?>" onkeypress="return ignoreSpaces(event)" readonly required>
+
+                     <input type="email" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" onkeypress="return ignoreSpaces(event)" readonly required>
                      <label for="exampleFormControlInput1"> First Name </label>
-                     <input type="text" class="form-control" name="firstname" id="firstname"
-                         placeholder="User Firstname " value="<?php echo $firstname ?>"
-                         onkeypress="return ignoreSpaces(event)" required>
+                     <input type="text" class="form-control" name="firstname" id="firstname" placeholder="User Firstname " value="<?php echo $firstname ?>" onkeypress="return ignoreSpaces(event)" required>
                      <label for="exampleFormControlInput1"> Last Name </label>
-                     <input type="text" class="form-control" name="lastname" id="lastname" placeholder="User Lastname "
-                         value="<?php echo $lastname ?>" onkeypress="return ignoreSpaces(event)" required>
+                     <input type="text" class="form-control" name="lastname" id="lastname" placeholder="User Lastname " value="<?php echo $lastname ?>" onkeypress="return ignoreSpaces(event)" required>
                      <label for="exampleFormControlInput1"> Birth </label>
-                     <input type="date" class="form-control" name="birth" id="birth" placeholder="User Lastname "
-                         value="<?php echo $birth ?>" required>
+                     <input type="date" class="form-control" name="birth" id="birth" placeholder="User Lastname " value="<?php echo $birth ?>" required>
                      <label for="exampleFormControlInput1"> Gender </label><br>
                      <div class="form-check form-check-inline">
-                         <label><input class="form-check-input" type="radio" name="gender" value="Male"
-                                 <?php echo ($gender == 'Male') ? 'checked' : '' ?>>Male&nbsp;&nbsp;</label>
-                         <label><input class="form-check-input" type="radio" name="gender" value="Female"
-                                 <?php echo ($gender == 'Female') ? 'checked' : '' ?>>Female</label>
+                         <label><input class="form-check-input" type="radio" name="gender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : '' ?>>Male&nbsp;&nbsp;</label>
+                         <label><input class="form-check-input" type="radio" name="gender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : '' ?>>Female</label>
                      </div> <br>
                      <label for="exampleFormControlInput1"> Occupation </label>
 
-                     <select class="form-select " aria-label=".form-select-sm example" name="occupation" id="occupation"
-                         required>
-                         <option value="<?php echo $occupation ?>"selected><?php echo $occupation ?></option>
+                     <select class="form-select " aria-label=".form-select-sm example" name="occupation" id="occupation" required>
+                         <option value="<?php echo $occupation ?>" selected><?php echo $occupation ?></option>
                          <option value="Accountant">Accountant</option>
                          <option value="Administrator">Administrator</option>
                          <option value="Advertising">Advertising</option>
@@ -214,8 +202,7 @@
 
                      <label for="exampleFormControlInput1"> Interests </label>
 
-                     <select class="form-select " aria-label=".form-select-sm example" name="interests" id="interests"
-                         required>
+                     <select class="form-select " aria-label=".form-select-sm example" name="interests" id="interests" required>
                          <option value="<?php echo $interests ?>" selected><?php echo $interests ?></option>
                          <option value="Read">Read</option>
                          <option value="Sports">Sports</option>
@@ -229,13 +216,12 @@
                          <option value="Pets">Pets</option>
                      </select>
                      <label for="exampleFormControlInput1"> Personality </label>
-                     <input type="text" class="form-control" name="personality" id="personality"
-                         placeholder="User personality " value="<?php echo $personality ?>" readonly required>
+                     <input type="text" class="form-control" name="personality" id="personality" placeholder="User personality " value="<?php echo $personality ?>" readonly required>
                  </div>
 
                  <center><input type="submit" class="btn btn-danger" value="Save Profile"></center>
              </form>
-            
+
          </div>
 
 
@@ -245,23 +231,13 @@
              <h4>Edit User Password</h4>
 
              <form method="POST" action="./action/saveUserPasswordAction.php">
-                 <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address "
-                     value="<?php echo $email ?>" readonly required>
+                 <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" readonly required>
                  <label for="exampleFormControlInput1"> Old Password </label>
-                 <input type="password" class="form-control" name=oldpassword
-                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your old password"
-                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                     onkeypress="return ignoreSpaces(event)" required>
+                 <input type="password" class="form-control" name=oldpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your old password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
                  <label for="exampleFormControlInput1"> New Password </label>
-                 <input type="password" class="form-control" name=newpassword
-                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password"
-                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                     onkeypress="return ignoreSpaces(event)" required>
+                 <input type="password" class="form-control" name=newpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
                  <label for="exampleFormControlInput1"> Confirm New Password </label>
-                 <input type="password" class="form-control" name=newpasswordConfirm
-                     pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password"
-                     title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
-                     onkeypress="return ignoreSpaces(event)" required>
+                 <input type="password" class="form-control" name=newpasswordConfirm pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your new password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
                  <small id="passwordHelpInline" class="text-muted">
                      Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more
                      characters.
@@ -286,8 +262,8 @@
 
  </div>
  <script>
-function ignoreSpaces(event) {
-    var character = event ? event.which : window.event.keyCode;
-    if (character == 32) return false;
-}
+     function ignoreSpaces(event) {
+         var character = event ? event.which : window.event.keyCode;
+         if (character == 32) return false;
+     }
  </script>

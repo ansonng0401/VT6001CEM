@@ -7,7 +7,22 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
 }
 ?>
 <!DOCTYPE html>
-
+<style>
+.disable-select {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Old version of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer or Edge */
+    user-select: none;
+    /* All modern browsers */
+}
+</style>
 <html lang="en">
 
 <head>
@@ -23,6 +38,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Personalised Dating Matching</title>
 </head>
+<div class="disable-select">
 <body>
     
     <div class="container">

@@ -25,7 +25,12 @@ while ($chat = mysqli_fetch_assoc($chatrec)) {
 }
 
 }else{
-  echo "<center>Plese Select Chat, Or Go Match </center>";
+  echo "<div class='alert alert-success' role='alert'>
+  <h4 class='alert-heading'><i class='fa fa-comments-o' aria-hidden='true'></i> Chat</a></h4>
+  <p>Please Select Recent Chat Users </p>
+  <hr>
+  <p class='mb-0'>Or Go To Match Users</p>
+</div>";
 
 }
 mysqli_close($conn);

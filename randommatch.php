@@ -11,11 +11,11 @@ include 'header.php';
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="matchingmainpage.php">Matching Home Page</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Random Matching</li>
+    <li class="breadcrumb-item active" aria-current="page"><i  class="fa">&#xf074;</i> Random Matching</li>
   </ol>
 </nav>
 <center>
-    <h4 class="display-6">Random Matching</h4>
+    <h4 class="display-6"><i  class="fa">&#xf074;</i> Random Matching</h4>
 </center>
 <?php
 
@@ -61,8 +61,8 @@ Gender: <?=$gender?> <br>
 Personality: <?=$personality?><br>
 Occupation: <?=$occupation?><br>
 Interests: <?=$interests?><hr>
-<button class="btn btn-secondary"onClick="window.location.reload();">Random</button>
-<?='<a class="btn btn-success" href="chat.php?toUser='. $userid .'&firstname='. $firstname .'&lastname='. $lastname .'" role="button">Chat</a>'?>
+<button class="btn btn-outline-secondary"onClick="window.location.reload();"><i  class="fa">&#xf074;</i> Random</button>
+<?='<a class="btn btn-success" href="chat.php?toUser='. $userid .'&firstname='. $firstname .'&lastname='. $lastname .'" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></a>'?>
   </div>
 
 
