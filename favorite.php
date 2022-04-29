@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
       }  
       ?>
 
-<div class="col-4">
+<div class="col">
 				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px;">
         <?=$image?><br>
 					<h5 style="text-align:center;" ><?=$row["firstname"]?> <?=$row["lastname"]?></h4>

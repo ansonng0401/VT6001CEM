@@ -42,7 +42,6 @@ $today = date("Y-m-d");
 $age = date_diff(date_create($birth), date_create($today));
 
 
-mysqli_close($conn);
 
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-ini_set('memory_limit','2048M');
+
 
 ini_set('display_errors','off');
   include 'conn.php';
@@ -30,7 +30,7 @@ if (isset($_POST['upload_image'])) {
             document.location.href = '../mainpage.php';
           </script>
           ";
-    } elseif ($imageSize > 12000000) {
+    } elseif ($imageSize > 1200000) {
       $_SESSION["update_image_message"] = "Image Size Is Too Large";
       $_SESSION["update_image_message_color"] = "danger";
       echo
