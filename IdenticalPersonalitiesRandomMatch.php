@@ -14,6 +14,7 @@ include 'header.php';
     <li class="breadcrumb-item active" aria-current="page"><i class="fa">&#xf074;</i> Identical Personalities Random Match</li>
   </ol>
 </nav>
+
 <center>
   <h4 class="display-6"><i class="fa">&#xf074;</i> Identical Personalities Random Match</h4>
 </center>
@@ -96,11 +97,16 @@ $age = date_diff(date_create($birth), date_create($today));
 <?php } else {
 
 ?>
-
+<br>
   <div class="alert alert-danger" role="alert">
     <center>
-      <h5>Please Do The Personality Test</h5>
-    </center>
+    <i style='font-size:120px' class='fas'>⚠ </i> <Br>
+          <h4>Please Do The Personality Test</h4> 
+          <h5>Since user not completed the personality test, <Br> <Br>
+User cannot use the this Functions
+to match<br> <Br>
+Users please do the personality test<br> </h5>
+</br> </center>
   </div>
 <?php
 } ?>

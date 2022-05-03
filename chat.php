@@ -16,8 +16,11 @@ include('./action/conn.php');
     </nav>
 
     <style>
+        i1:hover {
+  color:#9B9DF9;
+}
         .bg-white {
-            background-color: #fff;
+            background-color: #DCDDFF;
         }
 
         .friend-list {
@@ -239,18 +242,18 @@ include('./action/conn.php');
                     <?php
                     //$sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
                     $sql = "select * from userinfo , chatmessages
-                            where userid = touser and userid != " . $_SESSION['userid'] . " and
-                            id in (select max(id) from chatmessages group by touser) and
-                            (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ")
-                                                    
-                            UNION
-                                                    
-                            select * from userinfo , chatmessages
-                            where userid = fromuser and userid != " . $_SESSION['userid'] . " and
-                            id in (select max(id) from chatmessages group by touser) and
-                            (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ") 
-                                                    
-                            order by id desc";
+                    where userid = touser and userid != " . $_SESSION['userid'] . " and
+                    id in (select max(id) from chatmessages group by touser) and
+                    (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ")
+                                            
+                    UNION
+                                            
+                    select * from userinfo , chatmessages
+                    where userid = fromuser and userid != " . $_SESSION['userid'] . " and
+                    id in (select max(id) from chatmessages group by touser) and
+                    (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ") 
+                                            
+                    order by id desc ";
                     $msgs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                     while ($msg = mysqli_fetch_assoc($msgs)) {
                     ?>
@@ -261,7 +264,7 @@ include('./action/conn.php');
                                 if (empty($msg['image'])) {
                                     $image = '<center><img src="./assets/image/defuserimage.png" class="img-circle" alt="user"></center>';
                                 } else {
-                                    $image = '<center><img  src="data:image;base64,' . $msg['image'] . '"  class="img-circle" alt="user"></center>';
+                                    $image = '<center><img src="data:image;base64,' . $msg['image'] . '"  class="img-circle" alt="user"></center>';
                                 }
                                 echo $image;
                                 ?>
@@ -286,11 +289,73 @@ include('./action/conn.php');
 
             <div class="col-md-8 bg-white ">
                 <?php if (isset($uName["firstname"], $uName["lastname"])) {
-                    echo $uName["firstname"] . " " . $uName["lastname"];
+                    echo '<div style="font-size:25px;">' . $uName["firstname"] . " " . $uName["lastname"] . '<i1 style="color:#585BAB; display: inline-block; float: right; " data-toggle="modal" data-target="#exampleModalCenter" class="fa fa-info-circle"></i1></div>';
+
+                ?>
+
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle"><?= $uName["firstname"] . " " . $uName["lastname"] ?></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <div class="container">
+  <div class="row">
+    <div class="col-3">
+    <?= $image;?>
+    </div>
+    <div class="col-6">
+<?$sql = "SELECT * FROM  userinfo  WHERE userid = '".$_GET['toUser']."' and firstname='".$_GET['firstname']."' and lastname = '".$_GET['lastname']."' ";
+$rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+
+while ($rc = mysqli_fetch_assoc($rs)) {
+    $userid = $rc['userid'];
+    $email = $rc['email'];
+    $firstname = $rc['firstname'];
+    $lastname = $rc['lastname'];
+    $birth = $rc['birth'];
+    $gender = $rc['gender'];
+    $personality = $rc['personality'];
+    $occupation = $rc['occupation'];
+    $interests = $rc['interests'];
+    $image = $rc['image'];
+}
+
+$today = date("Y-m-d");
+$age = date_diff(date_create($birth), date_create($today));
+?>
+
+Age: <?=$age->format('%y');?><br>
+Gender: <?=$gender?> <br>
+Personality: <?=$personality?><br>
+Occupation: <?=$occupation?><br>
+Interests: <?=$interests?>
+    </div>
+  </div>
+
+</div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <?php
+
                 } ?>
                 <div class="chat-message overflow-auto" id="chat-message">
 
                     <?php
+
+
+
                     if (isset($_GET["toUser"]) && isset($_GET["firstname"]) && isset($_GET["lastname"])) {
                         $chatrecsql = "SELECT * FROM chatmessages Where (fromuser =" . $_SESSION['userid'] . " AND touser = " . $_GET["toUser"] . ")OR (fromuser =" . $_GET["toUser"] . " AND touser = " . $_SESSION['userid'] . ")";
                         $chatrec = mysqli_query($conn, $chatrecsql) or die(mysqli_error($conn));
@@ -298,13 +363,12 @@ include('./action/conn.php');
                             if ($chat["fromuser"] == $_SESSION['userid']) { ?>
                                 <?= "      <div style='text-align: right;'>
                     <p style='background-color:lightblue; word-wrap: break-word;display:inline-block; padding: 5px; border-radius:3px; width:auto; max width:70%;'>
-                    " . $chat["message"] . "</p></div>" ?>
+                    " . $chat["message"] . "<Br><datetime style='font-size:1px'>" . $chat["datetime"] . "</datetime></p> </div>"; ?>
 
                                 <?php } else { ?><?= "
                   <div class='comments'style='text-align: left;'>
               <p style='background-color:yellow; word-wrap: break-word;display:inline-block; padding: 5px; border-radius: 3px; max width:70%;'>
-              " . $chat["message"] . "
-              </p></div>";
+              " . $chat["message"] . "<Br><datetime style='font-size:1px'>" . $chat["datetime"] . "</datetime></p> </div>";
                                                 }
                                             }
                                         } else {
@@ -347,34 +411,35 @@ include('./action/conn.php');
                     var input = document.getElementById("message");
                     input.addEventListener("keypress", function(event) {
                         if (event.key === "Enter") {
-                        const button = document.getElementById('send')
+                            const button = document.getElementById('send')
 
-                        let x = document.getElementById("message").value;
-                        let text;
-                        message
-                        if (x == "") {
-                            text = "Input not valid";
-                            document.getElementById("demo").innerHTML = text;
-                            return;
-                        } else {
-                            button.disabled = true
-                            $.ajax({
-                                url: "./action/chatsendmessage.php",
-                                method: "POST",
-                                data: {
-                                    fromuser: $("#fromUser").val(),
-                                    touser: $("#toUser").val(),
-                                    message: $("#message").val()
-                                },
-                                dateType: "text",
-                                success: function(data) {
-                                    $('#message').val("")
-                                    button.disabled = false
-                                }
-                            });
+                            let x = document.getElementById("message").value;
+                            let text;
+                            message
+                            if (x == "") {
+                                text = "Input not valid";
+                                document.getElementById("demo").innerHTML = text;
+                                return;
+                            } else {
+                                button.disabled = true
+                                $.ajax({
+                                    url: "./action/chatsendmessage.php",
+                                    method: "POST",
+                                    data: {
+                                        fromuser: $("#fromUser").val(),
+                                        touser: $("#toUser").val(),
+                                        message: $("#message").val()
+                                    },
+                                    dateType: "text",
+                                    success: function(data) {
+                                        $('#message').val("")
+                                        button.disabled = false
+                                    }
+                                });
+                            }
+
                         }
-
-                     } });
+                    });
 
 
                     $("#send").on("click", function() {
