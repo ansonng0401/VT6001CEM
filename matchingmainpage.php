@@ -66,9 +66,13 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 
 
 <center>
+
 <Br>
+<button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='IdenticalPersonalitiesRandomMatch.php'"><i class="fa fa-random" aria-hidden="true"></i>
+Identical Personalities Random Matching</button>
+<Br><Br>
 <button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='randommatch.php'"><i class="fa fa-random" aria-hidden="true"></i>
-Random Matching</button>
+Random Matching </button>
 <Br>
 <br>
 <button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='searchmatchpage.php'"><i class="fa fa-search" aria-hidden="true"></i>

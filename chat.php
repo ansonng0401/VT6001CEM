@@ -227,53 +227,61 @@ include('./action/conn.php');
                     echo '<input type="Text" value=' . $_GET["toUser"] . ' id="toUser" hidden/>';
 
                 ?>
+                <?php
+                } else {
+                ?> <div class=" row border-bottom padding-sm" style="height: 40px;">
+                        Plese Select Chat, Or Go Match
+                    </div> <?php } ?>
+
+
+                Recent Chat History
+                <ul class="friend-list">
                     <?php
-                            } else {
-                                ?> <div class=" row border-bottom padding-sm" style="height: 40px;">
-                            Plese Select Chat, Or Go Match
-                        </div> <?php } ?>
+                    //$sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
+                    $sql = "select * from userinfo , chatmessages
+                            where userid = touser and userid != " . $_SESSION['userid'] . " and
+                            id in (select max(id) from chatmessages group by touser) and
+                            (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ")
+                                                    
+                            UNION
+                                                    
+                            select * from userinfo , chatmessages
+                            where userid = fromuser and userid != " . $_SESSION['userid'] . " and
+                            id in (select max(id) from chatmessages group by touser) and
+                            (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ") 
+                                                    
+                            order by id desc";
+                    $msgs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
+                    while ($msg = mysqli_fetch_assoc($msgs)) {
+                    ?>
 
-              
-                    Recent Chat History
-                    <ul class="friend-list">
-                        <?php
-                        //$sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
-                        $sql = "select * from userinfo , chatmessages c 
-                        where userid = touser and userid != " . $_SESSION['userid'] . " and
-                        fromuser = " . $_SESSION['userid'] . " and
-                        id in (select max(id) from chatmessages group by touser)
-                        order by id desc";
-                        $msgs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-                        while ($msg = mysqli_fetch_assoc($msgs)) {
-                        ?>
+                        <li>
+                            <a href="chat.php?toUser=<?= $msg['userid'] ?>&firstname=<?= $msg['firstname'] ?>&lastname=<?= $msg['lastname'] ?>" class="clearfix">
+                                <?php
+                                if (empty($msg['image'])) {
+                                    $image = '<center><img src="./assets/image/defuserimage.png" class="img-circle" alt="user"></center>';
+                                } else {
+                                    $image = '<center><img  src="data:image;base64,' . $msg['image'] . '"  class="img-circle" alt="user"></center>';
+                                }
+                                echo $image;
+                                ?>
 
-                            <li>
-                                <a href="chat.php?toUser=<?= $msg['userid'] ?>&firstname=<?= $msg['firstname'] ?>&lastname=<?= $msg['lastname'] ?>" class="clearfix">
-                                    <?php
-                                    if (empty($msg['image'])) {
-                                        $image = '<center><img src="./assets/image/defuserimage.png" class="img-circle" alt="user"></center>';
-                                    } else {
-                                        $image = '<center><img  src="data:image;base64,' . $msg['image'] . '"  class="img-circle" alt="user"></center>';
-                                    }
-                                    echo $image;
-                                    ?>
+                                <div class="friend-name">
+                                    <strong><?= $msg['firstname']; ?> <?= $msg['lastname']; ?></strong>
 
-                                    <div class="friend-name">
-                                        <strong><?= $msg['firstname']; ?> <?= $msg['lastname']; ?></strong>
+                                </div>
+                                <div class="last-message text-muted"><?= $msg['message'] ?></div>
+                                <!-- <small class="time text-muted">5 mins ago</small> -->
+                                <!-- <small class="chat-alert text-muted"><i class="fa fa-check"></i></small> -->
+                            </a>
+                        </li>
+                    <?php
 
-                                    </div>
-                                    <div class="last-message text-muted"><?= $msg['message'] ?></div>
-                                    <!-- <small class="time text-muted">5 mins ago</small> -->
-                                    <!-- <small class="chat-alert text-muted"><i class="fa fa-check"></i></small> -->
-                                </a>
-                            </li>
-                        <?php
+                    }
 
-                        }
+                    ?>
 
-                        ?>
-
-                    </ul>
+                </ul>
             </div>
 
             <div class="col-md-8 bg-white ">
@@ -335,6 +343,39 @@ include('./action/conn.php');
 
             <script type="text/javascript">
                 $(document).ready(function() {
+
+                    var input = document.getElementById("message");
+                    input.addEventListener("keypress", function(event) {
+                        if (event.key === "Enter") {
+                        const button = document.getElementById('send')
+
+                        let x = document.getElementById("message").value;
+                        let text;
+                        message
+                        if (x == "") {
+                            text = "Input not valid";
+                            document.getElementById("demo").innerHTML = text;
+                            return;
+                        } else {
+                            button.disabled = true
+                            $.ajax({
+                                url: "./action/chatsendmessage.php",
+                                method: "POST",
+                                data: {
+                                    fromuser: $("#fromUser").val(),
+                                    touser: $("#toUser").val(),
+                                    message: $("#message").val()
+                                },
+                                dateType: "text",
+                                success: function(data) {
+                                    $('#message').val("")
+                                    button.disabled = false
+                                }
+                            });
+                        }
+
+                     } });
+
 
                     $("#send").on("click", function() {
                         const button = document.getElementById('send')

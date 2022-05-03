@@ -18,6 +18,37 @@ include 'header.php';
     <h4 class="display-6"><i  class="fa">&#xf074;</i> Random Matching</h4>
 </center>
 <?php
+require_once('./action/conn.php');
+$personalitysql = "SELECT * FROM  userinfo WHERE userid = '$_SESSION[userid]'";
+$rs = mysqli_query($conn, $personalitysql) or die(mysqli_error($conn));
+while ($rc = mysqli_fetch_assoc($rs)) {
+  $userpersonality = $rc['personality'];
+}
+mysqli_free_result($rs);
+
+extract($_SESSION);
+mysqli_close($conn);
+if ($userpersonality == "Openness to Experience" || $userpersonality == "Conscientiousness" || $userpersonality == "Extroversion" || $userpersonality == "Agreeableness" || $userpersonality == "Neuroticism") {
+?>
+
+<div class="alert alert-info" role="alert">
+    <center>
+      <h5>Your Personality is <?= $userpersonality ?></h5>
+    </center>
+  </div>
+<?php } else {
+
+?>
+
+  <div class="alert alert-danger" role="alert">
+    <center>
+      <h5>Please Do The Personality Test</h5>
+    </center>
+  </div>
+<?php
+} ?>
+
+<?php
 
 include('./action/conn.php');
 $sql = "SELECT * FROM  userinfo  WHERE email != '".$_SESSION['email']."' ORDER BY RAND() LIMIT 1";
