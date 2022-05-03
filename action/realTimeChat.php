@@ -16,12 +16,11 @@ while ($chat = mysqli_fetch_assoc($chatrec)) {
   if ($chat["fromuser"] == $fromuser) {
     $output .= " <div style='text-align: right;'>
     <p style='background-color:lightblue; word-wrap: break-word;display:inline-block; padding: 5px; border-radius:3px; width:auto; max width:70%;'>
-    " . $chat["message"] . "<Br><datetime style='font-size:0.1px;'>" . $chat["datetime"] . "</datetime></p> </div>" ;
+    " . $chat["message"] . "<Br><datetime style='font-size:1px'>" . $chat["datetime"] . "</datetime></p> </div>" ;
   } else {
     $output .= " <div class='comments'style='text-align: left;'>
     <p style='background-color:yellow; word-wrap: break-word;display:inline-block; padding: 5px; border-radius: 3px; max width:70%;'>
-    " . $chat["message"] . "</p>
-    " . $chat["datetime"] . "</div>";
+    " . $chat["message"] . "<Br><datetime style='font-size:1px'>" . $chat["datetime"] . "</datetime></p> </div>" ;
   }
 }
 
