@@ -27,7 +27,7 @@ else
     $page = 1;
 }
 
-$num_per_page =02 ;
+$num_per_page =03 ;
 $start_from = ($page-1)*02;
 
 $sql = "select * from userinfo e, blocklist b where e.userid = b.blockuserid and b.userid = '".$_SESSION['userid']."'limit $start_from,$num_per_page";

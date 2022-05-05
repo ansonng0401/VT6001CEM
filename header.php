@@ -176,7 +176,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
                     </span>
 
                     <span class="navbar-text">
-                        <input type="button" onclick="location.href='./action/logoutAction.php'" class="btn btn-info" value="Logout" />
+                        <input type="button" onclick="location.href='./action/logoutAction.php'" style="font-size:16px" class="fa fa-sign-out btn btn-info" value=" Sign Out" />
 
 
                 </div>

@@ -80,9 +80,9 @@
                  <input type="hidden" name="id" value="<?php echo $_SESSION["userid"]; ?>">
                  <input type="hidden" name="name" value="<?php echo $firstname ?>">
                  <?php if (!empty($image)) {
-                        echo '<input type="submit" class="btn btn-danger" value="Delete Image" name="delete_image">';
+                        echo '<input type="submit" class="btn btn-danger fa" value="&#xf00d; Delete Image" name="delete_image">';
                     }          ?>
-                 <input type="submit" class="btn btn-success" value="Upload Image" name="upload_image">
+                 <input type="submit" class="btn btn-success fa" value="&#xf093; Upload Image" name="upload_image">
              </form>
 
 
@@ -219,7 +219,7 @@
                      <input type="text" class="form-control" name="personality" id="personality" placeholder="User personality " value="<?php echo $personality ?>" readonly required>
                  </div>
 
-                 <center><input type="submit" class="btn btn-danger" value="Save Profile"></center>
+                 <center><input type="submit" class="btn btn-danger fa" value="&#xf0c7; Save Profile"></center>
              </form>
 
          </div>
@@ -244,7 +244,7 @@
                  </small>
 
                  <br><br>
-                 <center><input type="submit" class="btn btn-danger" value="Save Password"></center>
+                 <center><input type="submit" class="btn btn-danger fa" value="&#xf0c7; Save Password"></center>
              </form>
          </div>
 
