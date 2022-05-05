@@ -111,6 +111,7 @@ include('./action/conn.php');
 
         img {
             max-width: 100%;
+            border-radius: 50%;
         }
 
         .chat-body {

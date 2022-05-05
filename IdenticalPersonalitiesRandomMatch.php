@@ -66,6 +66,31 @@ mysqli_free_result($rs);
 $today = date("Y-m-d");
 $age = date_diff(date_create($birth), date_create($today));
 
+$sql1 = "select * from favoritelist where userid ='" . $_SESSION['userid'] . "' and addfavuserid = '" .  $userid  . "'";
+
+
+$favresult = $conn->query($sql1);
+
+
+if ($favresult->num_rows > 0) {
+  $fav = '<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
+  <input type="hidden" name="action" id="action" value="deletefavourite" />
+  <input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
+  <input type="hidden" name="addfavuserid"  id="addfavuserid" value='.$userid.' />
+  <input type="submit" class="btn btn-outline-danger" value="♡ Favorite" ></form>';
+} else {
+  $fav = '
+  <form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
+  <input type="hidden" name="action" id="action" value="addfavourite" />
+  <input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
+  <input type="hidden" name="addfavuserid"  id="addfavuserid" value=' .$userid. ' />
+  <input type="submit" class="btn btn-outline-dark" value="♡ Favorite" ></form>';
+}
+$blcok = '	<form action="./action/addblock.php" method="POST" style="display: inline;"> 
+<input type="hidden" name="action" id="action" value="addblock" />
+<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
+<input type="hidden" name="blockuser"  id="blockuser" value='.$userid.' />
+<input type="submit" class="btn btn-outline-dark" value="&#x1f512; Block" ></form>';
 ?>
 <Br>
 
@@ -84,6 +109,8 @@ $age = date_diff(date_create($birth), date_create($today));
       Occupation: <?= $occupation ?><br>
       Interests: <?= $interests ?>
       <hr>
+      			
+				<?=$blcok .' '. $fav?>
       <button class="btn btn-outline-secondary" onClick="window.location.reload();"><i  class="fa">&#xf021;</i> Random</button>
       <?= '<a class="btn btn-success" href="chat.php?toUser=' . $userid . '&firstname=' . $firstname . '&lastname=' . $lastname . '" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></a>' ?>
     </div>

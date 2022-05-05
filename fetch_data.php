@@ -61,32 +61,32 @@ if (isset($_POST["action"])) {
 
 
 
-		
-			$sql = "select * from favoritelist where userid ='".$_SESSION['userid']."' and addfavuserid = '".$row["userid"]."'";
 
-			
+			$sql = "select * from favoritelist where userid ='" . $_SESSION['userid'] . "' and addfavuserid = '" . $row["userid"] . "'";
+
+
 			$favresult = $conn->query($sql);
-			
+
 
 			if ($favresult->num_rows > 0) {
-				$fav='<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
+				$fav = '<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
 				<input type="hidden" name="action" id="action" value="deletefavourite" />
-				<input type="hidden" name="userid" id="userid" value='.$_SESSION['userid'].' />
-				<input type="hidden" name="addfavuserid"  id="addfavuserid" value='.$row['userid'].' />
+				<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
+				<input type="hidden" name="addfavuserid"  id="addfavuserid" value=' . $row['userid'] . ' />
 				<input type="submit" class="btn btn-outline-danger" value="♡ Favorite" ></form>';
-			}else{
-				$fav='
+			} else {
+				$fav = '
 				<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
 				<input type="hidden" name="action" id="action" value="addfavourite" />
-				<input type="hidden" name="userid" id="userid" value='.$_SESSION['userid'].' />
-				<input type="hidden" name="addfavuserid"  id="addfavuserid" value='.$row['userid'].' />
+				<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
+				<input type="hidden" name="addfavuserid"  id="addfavuserid" value=' . $row['userid'] . ' />
 				<input type="submit" class="btn btn-outline-dark" value="♡ Favorite" ></form>';
 			}
-$blcok='	<form action="./action/addblock.php" method="POST" style="display: inline;"> 
-<input type="hidden" name="action" id="action" value="addblock" />
-<input type="hidden" name="userid" id="userid" value='.$_SESSION['userid'].' />
-<input type="hidden" name="blockuser"  id="blockuser" value='.$row['userid'].' />
-<input type="submit" class="btn btn-outline-dark" value="&#x1f512; Block" ></form>';
+			$blcok = '	<form action="./action/addblock.php" method="POST" style="display: inline;"> 
+			<input type="hidden" name="action" id="action" value="addblock" />
+			<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
+			<input type="hidden" name="blockuser"  id="blockuser" value=' . $row['userid'] . ' />
+			<input type="submit" class="btn btn-outline-dark" value="&#x1f512; Block" ></form>';
 
 			$output .= '
 			    <div class="col-sm-4 ">
@@ -100,8 +100,8 @@ $blcok='	<form action="./action/addblock.php" method="POST" style="display: inli
 					<b>Interests </b>: ' . $row['interests'] . ' </p>
 					<center>
 				
-					'.	$blcok.'
-					'.$fav.'
+					' .	$blcok . '
+					' . $fav . '
 					<br>
 					<a class="btn btn-success" href="chat.php?toUser=' . $row['userid'] . '&firstname=' . $row['firstname'] . '&lastname=' . $row['lastname'] . '" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></center>
 
@@ -117,7 +117,7 @@ $blcok='	<form action="./action/addblock.php" method="POST" style="display: inli
 }
 
 ?>
-  
+
 
 <!-- 	
 <?php
