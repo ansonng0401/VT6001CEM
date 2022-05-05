@@ -10,9 +10,10 @@ include 'header.php';
 <br>
 
 <center>
-    <h4 class="display-6">Favorite List</h4>
+    <h4 class="display-6">Block List</h4>
 </center>
 
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 
 <?php
 
@@ -29,9 +30,8 @@ else
 $num_per_page =02 ;
 $start_from = ($page-1)*02;
 
-$sql = "select * from userinfo e, favoritelist f where e.userid = f.addfavuserid and f.userid = '".$_SESSION['userid']."'limit $start_from,$num_per_page";
-$sql1 = "select * from userinfo e, favoritelist f where e.userid = f.addfavuserid and f.userid = '".$_SESSION['userid']."'";
-// $sql = "SELECT * FROM  favoritelist  WHERE userid = '".$_SESSION['userid']."'";
+$sql = "select * from userinfo e, blocklist b where e.userid = b.blockuserid and b.userid = '".$_SESSION['userid']."'limit $start_from,$num_per_page";
+$sql1 = "select * from userinfo e, blocklist b where e.userid = b.blockuserid and b.userid = '".$_SESSION['userid']."'";
 
 $rs1 = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
 
@@ -41,7 +41,7 @@ $row = mysqli_num_rows($rs1);
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-  echo"<h5>&nbsp;&nbsp;&nbsp;Count of Favourite Users:  ".$row."<br> </h5>Page: ".$page." <div class='row align-items-start'><br> ";
+  echo"<h5>&nbsp;&nbsp;&nbsp;Count of Blocked Users:  ".$row."<br> </h5>Page: ".$page." <div class='row align-items-start'><br> ";
     while($row = $result->fetch_assoc()) {
   
       $today = date("Y-m-d");
@@ -62,13 +62,13 @@ if ($result->num_rows > 0) {
 					<b>Personality : </b><?=$row['personality']?><br />
 					<b>Occupation : </b><?=$row['occupation'] ?><br />
 					<b>Interests </b>: <?=$row['interests'] ?></p>
-					<center><a class="btn btn-outline-success" href="chat.php?toUser=<?=$row['addfavuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a> <a class="btn btn-outline-danger" href="./action/removefavlist.php?userid=<?=$_SESSION['userid']?>&addfavuserid=<?=$row['addfavuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>">♡ UnFavorite</a></center>
+					<center> <a class="btn btn-outline-danger" href="./action/removeblock.php?userid=<?=$_SESSION['userid']?>&blockuserid=<?=$row['blockuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>"><i style="font-size:24px" class="fa">&#xf09c;</i> Unblcok</a></center>
 				</div>
         </div>
        
    <? };
         echo" </div><center><br>";
-     $pr_query = "select * from userinfo e, favoritelist f where e.userid = f.addfavuserid and f.userid = '".$_SESSION['userid']."'" ;
+     $pr_query = "select * from userinfo e, blocklist b where e.userid = b.blockuserid and b.userid = '".$_SESSION['userid']."'";
      $pr_result = mysqli_query($conn,$pr_query);
      $total_record = mysqli_num_rows($pr_result);
      
@@ -76,22 +76,22 @@ if ($result->num_rows > 0) {
 
      if($page>1) 
      {
-        echo "<a href='favorite.php?page=".($page-1)."' class='btn btn-outline-danger'>PREVIOUS</a>";
+        echo "<a href='block.php?page=".($page-1)."' class='btn btn-outline-danger'>PREVIOUS</a>";
      }
 
      for($i = 1; $i < $total_page + 1; $i++) 
      {
      
        if($i==$page){
-        echo "<a href='favorite.php?page=".$i."' class='btn btn-primary'>$i</a>";}
+        echo "<a href='block.php?page=".$i."' class='btn btn-primary'>$i</a>";}
         else{
-          echo "<a href='favorite.php?page=".$i."' class='btn btn-outline-primary'>$i</a>";
+          echo "<a href='block.php?page=".$i."' class='btn btn-outline-primary'>$i</a>";
         }
      }
 
      if($i-1>$page) 
      {
-        echo "<a href='favorite.php?page=".($page+1)."' class='btn btn-outline-danger'>NEXT</a>";
+        echo "<a href='block.php?page=".($page+1)."' class='btn btn-outline-danger'>NEXT</a>";
      }
 
 
@@ -100,10 +100,10 @@ echo"</center>";
 } else {?>
 <br>
 <div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">No Favourite User</h4>
+  <h4 class="alert-heading">No Blocked User</h4>
   <p></p>
   <hr>
-  <p class="mb-0">No User Favourite Found</p>
+  <p class="mb-0">No Blocked User Record Found</p>
 
 </div>
 

@@ -305,10 +305,7 @@ include('./action/conn.php');
                                 <div class="modal-body">
                                 <div class="container">
   <div class="row">
-    <div class="col-3">
-    <?= $image;?>
-    </div>
-    <div class="col-6">
+
 <?$sql = "SELECT * FROM  userinfo  WHERE userid = '".$_GET['toUser']."' and firstname='".$_GET['firstname']."' and lastname = '".$_GET['lastname']."' ";
 $rs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
 
@@ -322,13 +319,22 @@ while ($rc = mysqli_fetch_assoc($rs)) {
     $personality = $rc['personality'];
     $occupation = $rc['occupation'];
     $interests = $rc['interests'];
-    $image = $rc['image'];
+    $userimage = $rc['image'];
+
 }
 
 $today = date("Y-m-d");
 $age = date_diff(date_create($birth), date_create($today));
 ?>
-
+    <div class="col-3">
+   <?if (empty($userimage)) {
+    echo '<center><img src="./assets/image/defuserimage.png" class="card-img-top"  alt="user"></center>';
+} else {
+    echo '<center><img src="data:image;base64,' . $userimage . '"  class="card-img-top"  alt="user"></center>';
+}        ?>
+    </div>
+    <div class="col-6">
+        <?=$firstname?>
 Age: <?=$age->format('%y');?><br>
 Gender: <?=$gender?> <br>
 Personality: <?=$personality?><br>

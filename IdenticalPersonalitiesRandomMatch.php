@@ -84,7 +84,7 @@ $age = date_diff(date_create($birth), date_create($today));
       Occupation: <?= $occupation ?><br>
       Interests: <?= $interests ?>
       <hr>
-      <button class="btn btn-outline-secondary" onClick="window.location.reload();"><i class="fa">&#xf074;</i> Random</button>
+      <button class="btn btn-outline-secondary" onClick="window.location.reload();"><i  class="fa">&#xf021;</i> Random</button>
       <?= '<a class="btn btn-success" href="chat.php?toUser=' . $userid . '&firstname=' . $firstname . '&lastname=' . $lastname . '" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></a>' ?>
     </div>
 

@@ -14,6 +14,8 @@ include 'header.php';
     <li class="breadcrumb-item active" aria-current="page"><i  class="fa">&#xf074;</i> Random Matching</li>
   </ol>
 </nav>
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
 <center>
     <h4 class="display-6"><i  class="fa">&#xf074;</i> Random Matching</h4>
 </center>
@@ -91,7 +93,7 @@ Gender: <?=$gender?> <br>
 Personality: <?=$personality?><br>
 Occupation: <?=$occupation?><br>
 Interests: <?=$interests?><hr>
-<button class="btn btn-outline-secondary"onClick="window.location.reload();"><i  class="fa">&#xf074;</i> Random</button>
+<button class="btn btn-outline-secondary"onClick="window.location.reload();"><i  class="fa">&#xf021;</i> Random</button>
 <?='<a class="btn btn-success" href="chat.php?toUser='. $userid .'&firstname='. $firstname .'&lastname='. $lastname .'" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></a>'?>
   </div>
 

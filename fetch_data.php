@@ -82,7 +82,11 @@ if (isset($_POST["action"])) {
 				<input type="hidden" name="addfavuserid"  id="addfavuserid" value='.$row['userid'].' />
 				<input type="submit" class="btn btn-outline-dark" value="♡ Favorite" ></form>';
 			}
-
+$blcok='	<form action="./action/addblock.php" method="POST" style="display: inline;"> 
+<input type="hidden" name="action" id="action" value="addblock" />
+<input type="hidden" name="userid" id="userid" value='.$_SESSION['userid'].' />
+<input type="hidden" name="blockuser"  id="blockuser" value='.$row['userid'].' />
+<input type="submit" class="btn btn-outline-dark" value="&#x1f512; Block" ></form>';
 
 			$output .= '
 			    <div class="col-sm-4 ">
@@ -95,8 +99,10 @@ if (isset($_POST["action"])) {
 					<b>Occupation : </b>' . $row['occupation'] . '<br />
 					<b>Interests </b>: ' . $row['interests'] . ' </p>
 					<center>
-			
+				
+					'.	$blcok.'
 					'.$fav.'
+					<br>
 					<a class="btn btn-success" href="chat.php?toUser=' . $row['userid'] . '&firstname=' . $row['firstname'] . '&lastname=' . $row['lastname'] . '" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></center>
 
 				</div>
