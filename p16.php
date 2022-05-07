@@ -19,7 +19,7 @@ if ((isset($_POST[$RQ]))) {
     $_SESSION[$RQ] = $_POST[$RQ];
 }elseif((isset($_SESSION[$RQ]))){
 } else{
-    header("Location: ./p$RRQ.php");
+    header("Location: ./p$RRQ");
 }
 ?>
 
@@ -42,7 +42,7 @@ if ((isset($_POST[$RQ]))) {
             <?php 
 if (isset($_SESSION[$Q])) {
     echo"
-    <form action=\"p$NQ.php\" method=\"POST\">";
+    <form action=\"p$NQ\" method=\"POST\">";
     if ($_SESSION[$Q]==0){
     echo"
     <div class=\"form-check mb-2\">
@@ -135,7 +135,7 @@ if ($_SESSION[$Q]==4){
 }; 
 echo"
 <div class=\"card-footer text-end\">
-<a href=\"p$RRQ.php\" target=\"_self\"><input type=\"button\"  class=\"btn btn-primary\" value=\"Return\"  /></a>
+<a href=\"p$RRQ\" target=\"_self\"><input type=\"button\"  class=\"btn btn-primary\" value=\"Return\"  /></a>
 <input type=\"submit\"  class=\"btn btn-primary\" value=\"Next\"  />
 </div>
 </form>
@@ -145,7 +145,7 @@ echo"
 
 } else {
     echo"
-    <form  action=\"p$NQ.php\" method=\"POST\">
+    <form action=\"p$NQ\" method=\"POST\">
 
     <div class=\"form-check mb-2\">
         <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=$Q id=\"radio2Example1\" required=\"required\" />
@@ -183,7 +183,7 @@ echo"
     
 </div>
 <div class=\"card-footer text-end\">
-<a href=\"p$RRQ.php\" target=\"_self\"><input type=\"button\"  class=\"btn btn-primary\" value=\"Return\"  /></a>
+<a href=\"p$RRQ\" target=\"_self\"><input type=\"button\"  class=\"btn btn-primary\" value=\"Return\"  /></a>
 <input type=\"submit\"  class=\"btn btn-primary\" value=\"Next\"  />
 </div>
 </form>

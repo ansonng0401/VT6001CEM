@@ -9,5 +9,5 @@ echo 'window.history.back();';
   echo '</script>'; 
   }
 else
-header("Location: ../error.php");
+header("Location: ../error");
 ?>

@@ -18,9 +18,9 @@ if (isset($_POST['email'])) {
     mysqli_query($conn, $sql3);
     echo '<script type="text/javascript">';
     $_SESSION["edit_user_ok"] = 1;
-    echo 'window.location = "../mainpage.php";';
+    echo 'window.location = "../mainpage";';
     echo '</script>';
  
 }else
-header("Location: ../error.php"); 
+header("Location: ../error"); 
 ?>

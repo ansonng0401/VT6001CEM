@@ -17,7 +17,7 @@
 <div class="disable-select">
 <?php session_start();
 if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSION["lastname"])) {
-  header("Location: mainpage.php");
+  header("Location: mainpage");
 } else {
 }
 ?>
@@ -47,7 +47,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
     </center>
     <div class="title">Sign-Up</div>
     <div class="content">
-      <form action="action/SignUpAction.php" method="post">
+      <form action="action/SignUpAction" method="post" enctype="multipart/form-data">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
@@ -196,7 +196,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
         <div class="button">
           <input type="submit" value="Register">
         </div>
-        <div style="text-align: right;">Return to <a href="index.php">Login</div>
+        <div style="text-align: right;">Return to <a href="index">Login</div>
       </form>
     </div>
   </div>

@@ -67,10 +67,10 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
 
 <center>
 <Br>
-<button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='personalitystartpage.php'">Personality Test</button>
+<button type="button" class="myButton"  style="width:70%; height:250px;" onclick="window.location.href='personalitystartpage'">Personality Test</button>
 <Br>
 <br>
-<button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='testresultpg.php'">Personality Informations & Result</button>
+<button type="button" class="myButton" style="width: 70%;height:250px;"  onclick="window.location.href='testresultpg'">Personality Informations & Result</button>
 
 </center>
 </div>

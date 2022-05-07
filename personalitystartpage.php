@@ -10,7 +10,7 @@ include 'header.php';
 <br>
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+    <li class="breadcrumb-item"><a href="personalitymainpage">Personality Home Page</a></li>
     <li class="breadcrumb-item active" aria-current="page">Personality Test</li>
   </ol>
 </nav>
@@ -51,7 +51,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
         Start The Test
     </button>
 
-    <button type="button" onclick="location.href='testresultpg.php'" class="btn btn-warning">View The Result</button>
+    <button type="button" onclick="location.href='testresultpg'" class="btn btn-warning">View The Result</button>
 </center>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -73,7 +73,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" onclick="location.href='p1.php'" class="btn btn-primary">Start</button>
+                <button type="button" onclick="location.href='p1'" class="btn btn-primary">Start</button>
             </div>
         </div>
 
@@ -109,7 +109,7 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" onclick="location.href='p1.php'" class="btn btn-primary">Start</button>
+                <button type="button" onclick="location.href='p1'" class="btn btn-primary">Start</button>
             </div>
         </div>
 

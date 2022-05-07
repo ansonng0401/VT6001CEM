@@ -13,23 +13,24 @@ include 'conn.php';
    if ($rc["password"] != $sha512oldpsw) {
     echo '<script type="text/javascript">';
     echo 'alert("Old Password Not Match, Please Try Again");';
-    echo 'window.location = "../mainpage.php";';
+    echo 'window.location = "../mainpage";';
     echo '</script>';
   } 
   else if ($newpassword!= $newpasswordConfirm) {
     echo '<script type="text/javascript">';
     echo 'alert("New Password does not match with New confirm password, please input password Again!");';
-    echo 'window.location = "../mainpage.php";';
+    echo 'window.location = "../mainpage";';
     echo '</script>';
   } 
 
  else { 
-  $sql = 'UPDATE userinfo SET `password` = "'.$sha512psw.'"WHERE `email` = "'.$email.'"';
+  $sql = 'UPDATE userinfo SET `password` = "'.$sha512psw.'" Where `email` = "'.$email.'"';
+  mysqli_query($conn, $sql);
     mysqli_close($conn);
     echo '<script type="text/javascript">';
     echo 'alert("Save Password Success! ");';
-    echo 'window.location = "../mainpage.php";';
+    echo 'window.location = "../mainpage";';
     echo '</script>';
   }
 }else
-header("Location: ../error.php");
+header("Location: ../error");

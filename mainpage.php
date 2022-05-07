@@ -1,10 +1,6 @@
  <!DOCTYPE html>
 
- <style>
-     .el-form {
-         white-space: nowrap;
-     }
- </style>
+
  <?php
     include 'header.php';
     include('./action/conn.php');
@@ -35,7 +31,7 @@
  <div class="container">
      <?php if ($personality == "NULL") {
             $personality = "There is no record, Please take the Personality Test.";
-            echo "<h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage.php'> Here </a>to do the test!</div></h5></center>";
+            echo "<h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage'> Here </a>to do the test!</div></h5></center>";
         }
         ?>
      <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -72,7 +68,7 @@
                 } else {
                     echo '<center><img src="data:image;base64,' . $image . '"  height="240" "alt="user"></center>';
                 }          ?>
-             <form class="form" id="form" action="./action/saveUserImageAction.php" enctype="multipart/form-data" method="post" style="margin:0px;display:inline;">
+             <form class="form" id="form" action="./action/saveUserImageAction" enctype="multipart/form-data" method="post" style="margin:0px;display:inline;">
 
                  <label for="exampleFormControlInput1">User Image Upload</label>
                  <input type="file" id="image" name="image" class="form-control" accept=".jpg, .jpeg, .png" />
@@ -87,7 +83,7 @@
 
 
 
-             <form method="POST" action="./action/saveUserProfileAction.php" enctype="multipart/form-data">
+             <form method="POST" action="./action/saveUserProfileAction" enctype="multipart/form-data">
                  <div class="form-group">
                      <BR>
                      <h4>Edit User Profile</h4>
@@ -230,7 +226,7 @@
              <br>
              <h4>Edit User Password</h4>
       
-             <form method="POST" action="./action/saveUserPasswordAction.php">
+             <form method="POST" action="./action/saveUserPasswordAction" enctype="multipart/form-data">
                  <input type="hidden" class="form-control" name="email" id="email" placeholder="User email address " value="<?php echo $email ?>" readonly required>
                  <label for="exampleFormControlInput1"> Old Password </label>
                  <input type="password" class="form-control" name=oldpassword pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="Enter your old password" title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" onkeypress="return ignoreSpaces(event)" required>
@@ -261,9 +257,3 @@
  </form>
 
  </div>
- <script>
-     function ignoreSpaces(event) {
-         var character = event ? event.which : window.event.keyCode;
-         if (character == 32) return false;
-     }
- </script>

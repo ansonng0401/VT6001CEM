@@ -1,7 +1,7 @@
 
  <?php session_start();
 if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSION["lastname"])) {
-    header("Location: mainpage.php");
+    header("Location: mainpage");
 } else {
 
 }
@@ -46,7 +46,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
             <div class="form login">
                 <center><span class="Logotitle">Personality Love Matching</span><br></center>
                 <span class="title">Login</span>
-                <form action="action/loginAction.php"  method="post">
+                <form action="action/loginAction"  method="post" enctype="multipart/form-data">
                     <div class="input-field">
                         <input type="email" placeholder="Enter your email" value="<?php if(isset($_COOKIE["user_email"])) { echo $_COOKIE["user_email"]; } ?>" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct email address" required>
                         <i class="uil uil-envelope icon"></i>
@@ -60,7 +60,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
                     <div class="checkbox-text">
                         <div class="checkbox-content">
                         <input type="checkbox" name="remember" id="remember" value="remember" <?php if(isset($_COOKIE["remember"])) { ?> checked <?php } ?>
-                            <label for="logCheck" class="text">Remember me</label>
+                            <lable for="logCheck" class="text">Remember me</label>
                         </div>
                         
                         <a href="#" class="text">Forgot password?</a>
@@ -73,7 +73,7 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
 
                 <div class="login-signup">
                     <span class="text">Not a member?
-                        <a href="signup.php" class="text signup-link">Sign up now</a>
+                        <a href="signup" class="text signup-link">Sign up now</a>
                     </span>
                 </div>
             </div>

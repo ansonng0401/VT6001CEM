@@ -68,7 +68,7 @@
 <?php session_start();
 if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSION["lastname"])) {
 } else {
-    header("Location: ./index.php");
+    header("Location: ./index");
 }
 ?>
 <html lang="en">
@@ -106,22 +106,25 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
 
-                <a class="navbar-brand" href="mainpage.php">Personality Love Match</a>
+                <a class="navbar-brand" href="mainpage">Personality Love Match</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="mainpage.php"><i style="font-size:18px" class="fa fa-home"></i>
+                            <a class="nav-link" href="mainpage"><i style="font-size:18px" class="fa fa-home"></i>
                                 Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="personalitymainpage.php">Personality</a>
+                            <a class="nav-link" href="personalitymainpage">Personality</a>
 
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="matchingmainpage.php">Match</a>
+                            <a class="nav-link" href="matchingmainpage">Match</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="bot">Help</a>
                         </li>
 
                     </ul>
@@ -159,24 +162,24 @@ if (isset($_SESSION['email']) ||  isset($_SESSION["firstname"]) || isset($_SESSI
                                 &nbsp
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="block.php"> <i style="font-size:20px" class="fa fa-lock"></i>
+                            <a class="nav-link" href="block"> <i style="font-size:20px" class="fa fa-lock"></i>
                                 Block</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="favorite.php"> <i style="font-size:18px" class="fa fa-heart"></i>
+                            <a class="nav-link" href="favorite"> <i style="font-size:18px" class="fa fa-heart"></i>
                                 Favorite</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="chat.php"><i style="font-size:20px" class="fa fa-comments"></i>
+                            <a class="nav-link" href="chat"><i style="font-size:20px" class="fa fa-comments"></i>
                                 Chat</a>
                         </li>
                     </ul>
                     </span>
 
                     <span class="navbar-text">
-                        <input type="button" onclick="location.href='./action/logoutAction.php'" style="font-size:16px" class="fa fa-sign-out btn btn-info" value=" Sign Out" />
+                        <input type="button" onclick="location.href='./action/logoutAction'" style="font-size:16px" class="fa fa-sign-out btn btn-info" value=" Sign Out" />
 
 
                 </div>

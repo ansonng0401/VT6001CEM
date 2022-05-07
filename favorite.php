@@ -26,8 +26,8 @@ if (isset($_GET['page'])) {
 $num_per_page = 03;
 $start_from = ($page - 1) * 02;
 
-$sql = "select * from userinfo e, favoritelist f where e.userid = f.addfavuserid and f.userid = '" . $_SESSION['userid'] . "'limit $start_from,$num_per_page";
-$sql1 = "select * from userinfo e, favoritelist f where e.userid = f.addfavuserid and f.userid = '" . $_SESSION['userid'] . "'";
+$sql = "select * from userinfo e, favoritelist f where e.userid not in (select blockuserid from blocklist where userid =  ".$_SESSION['userid'].") and e.userid = f.addfavuserid and f.userid = '" . $_SESSION['userid'] . "'limit $start_from,$num_per_page";
+$sql1 = "select * from userinfo e, favoritelist f where e.userid not in (select blockuserid from blocklist where userid =  ".$_SESSION['userid'].") and e.userid = f.addfavuserid and f.userid = '" . $_SESSION['userid'] . "'";
 // $sql = "SELECT * FROM  favoritelist  WHERE userid = '".$_SESSION['userid']."'";
 
 $rs1 = mysqli_query($conn, $sql1) or die(mysqli_error($conn));
@@ -53,13 +53,13 @@ if ($result->num_rows > 0) {
       <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px;">
         <?= $image ?><br>
         <h5 style="text-align:center;"><?= $row["firstname"] ?> <?= $row["lastname"] ?></h4>
-          <p><b>Gender : </b><?= $row["gender"] ?><br />
-            <b>Age : </b><?= $age->format('%y'); ?><br />
+          <p><b>Gender : </b><?= $row["gender"] ?><br/>
+            <b>Age : </b><?= $age->format('%y'); ?><br/>
             <b>Personality : </b><?= $row['personality'] ?><br />
             <b>Occupation : </b><?= $row['occupation'] ?><br />
             <b>Interests </b>: <?= $row['interests'] ?>
           </p>
-          <center><a class="btn btn-outline-success" href="chat.php?toUser=<?= $row['addfavuserid'] ?>&firstname=<?= $row['firstname'] ?>&lastname=<?= $row['lastname'] ?>" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a> <a class="btn btn-outline-danger" href="./action/removefavlist.php?userid=<?= $_SESSION['userid'] ?>&addfavuserid=<?= $row['addfavuserid'] ?>&firstname=<?= $row['firstname'] ?>&lastname=<?= $row['lastname'] ?>">♡ UnFavorite</a></center>
+          <center><a class="btn btn-outline-success" href="chat?toUser=<?= $row['addfavuserid'] ?>&firstname=<?= $row['firstname'] ?>&lastname=<?= $row['lastname'] ?>" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a> <a class="btn btn-outline-danger" href="./action/removefavlist?userid=<?= $_SESSION['userid'] ?>&addfavuserid=<?= $row['addfavuserid'] ?>&firstname=<?= $row['firstname'] ?>&lastname=<?= $row['lastname'] ?>">♡ UnFavorite</a></center>
       </div>
     </div>
 
@@ -72,20 +72,20 @@ if ($result->num_rows > 0) {
   $total_page = ceil($total_record / $num_per_page);
 
   if ($page > 1) {
-    echo "<a href='favorite.php?page=" . ($page - 1) . "' class='btn btn-outline-danger'>PREVIOUS</a>";
+    echo "<a href='favorite?page=" . ($page - 1) . "' class='btn btn-outline-danger'>PREVIOUS</a>";
   }
 
   for ($i = 1; $i < $total_page + 1; $i++) {
 
     if ($i == $page) {
-      echo "<a href='favorite.php?page=" . $i . "' class='btn btn-primary'>$i</a>";
+      echo "<a href='favorite?page=" . $i . "' class='btn btn-primary'>$i</a>";
     } else {
-      echo "<a href='favorite.php?page=" . $i . "' class='btn btn-outline-primary'>$i</a>";
+      echo "<a href='favorite?page=" . $i . "' class='btn btn-outline-primary'>$i</a>";
     }
   }
 
   if ($i - 1 > $page) {
-    echo "<a href='favorite.php?page=" . ($page + 1) . "' class='btn btn-outline-danger'>NEXT</a>";
+    echo "<a href='favorite?page=" . ($page + 1) . "' class='btn btn-outline-danger'>NEXT</a>";
   }
 
 

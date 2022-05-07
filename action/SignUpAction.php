@@ -18,47 +18,47 @@
         if ($firstname == "") {
             echo '<script type="text/javascript">';
             echo 'alert("Please input firstname !");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($lastname == "") {
             echo '<script type="text/javascript">';
             echo 'alert("This input lastname !");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             echo '<script type="text/javascript">';
             echo 'alert("Pleae input correct email !");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($birth == "") {
             echo '<script type="text/javascript">';
             echo 'alert("Pleae input birth !");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($password == "") {
             echo '<script type="text/javascript">';
             echo 'alert("Pleae input password !");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($password != $confirmpassword) {
             echo '<script type="text/javascript">';
             echo 'alert("Password does not match with confirm password, Please input password Again!");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($gender == "") {
             echo '<script type="text/javascript">';
             echo 'alert("Please input gender");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($occupation == "") {
             echo '<script type="text/javascript">';
             echo 'alert("Please select occupation");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } elseif ($interests == "") {
             echo '<script type="text/javascript">';
             echo 'alert("Please select interests");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         }else{
 
@@ -67,7 +67,7 @@
         if (mysqli_num_rows($rs) > 0) {
             echo '<script type="text/javascript">';
             echo 'alert("This email address is already registered, Please Login or try another email adddress register!");';
-            echo 'window.location = "../signup.php";';
+            echo 'window.location = "../signup";';
             echo '</script>';
         } else {
             $sha512psw = hash('sha512', $password);
@@ -86,7 +86,7 @@
     }
     mysqli_close($conn);
     echo '<script type="text/javascript">';
-    echo 'window.location = "../mainpage.php";';
+    echo 'window.location = "../mainpage";';
     echo '</script>';
 
 }
@@ -151,7 +151,7 @@
         // // }
 
     } else {
-        header("Location: ../error.php");
+        header("Location: ../error");
     }
 
     mysqli_close($conn);

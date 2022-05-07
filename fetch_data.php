@@ -1,11 +1,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <?php
 session_start();
 include('./action/conn.php');
 
+
+
 if (isset($_POST["action"])) {
-	$query = "SELECT * FROM userinfo Where email NOT IN ('" . $_SESSION['email'] . "')";
+	$query = "SELECT * FROM userinfo Where userid not in (select blockuserid from blocklist where userid =  " . $_SESSION['userid'] . ") and userid NOT IN ('" . $_SESSION['userid'] . "')";
 	$GET = "";
+
+
 	if (isset($_POST["minimum_age"], $_POST["maximum_age"])  && !empty($_POST["maximum_age"])) {
 
 		date_default_timezone_set("Asia/Taipei");
@@ -16,30 +21,33 @@ if (isset($_POST["action"])) {
 		$maxageyear = $nowYear - $_POST["maximum_age"];
 
 		$query .= " AND birth BETWEEN '" . $maxageyear  . "-1-1 ' AND '" . $minageyear . "-12-31'";
-		$GET .= "&minimum_age=" . $_POST["minimum_age"]  . "&maximum_age" . $_POST["maximum_age"] . "";
+		$GET .= "minimum_age=" . $_POST["minimum_age"]  . "&maximum_age" . $_POST["maximum_age"] . "";
 	}
 	if (isset($_POST["inter"])) {
 		$inter_filter = implode("','", $_POST["inter"]);
-		$inter_get = implode(",", $_POST["inter"]);
+		$inter_GETfilter = implode(',', $_POST["inter"]);
 		$query .= " AND interests IN('" . $inter_filter . "')";
-		$GET .= "&inter=" . $inter_get . "";
+		$GET .= "&inter=" . $inter_GETfilter . "";
 	}
 	if (isset($_POST["occ"])) {
 		$occ_filter = implode("','", $_POST["occ"]);
+		$occ_GETfilter = implode(',', $_POST["occ"]);
 		$query .= " AND occupation IN('" . $occ_filter . "')";
+		$GET .= "&occ=" . $occ_GETfilter . "";
 	}
 	if (isset($_POST["personality"])) {
 		$personality_filter = implode("','", $_POST["personality"]);
-		$query .= "AND personality IN('" . $personality_filter . "')
-		";
+		$personality_GETfilter = implode(',', $_POST["personality"]);
+		$query .= "AND personality IN('" . $personality_filter . "')";
+		$GET .= "&personality=" . $personality_GETfilter . "";
 	}
 	if (isset($_POST["gender"])) {
 		$gender_filter = implode("','", $_POST["gender"]);
-		$query .= " AND gender IN('" . $gender_filter . "')
-		";
+		$gender_GETfilter = implode(',', $_POST["gender"]);
+		$query .= " AND gender IN('" . $gender_filter . "')";
+		$GET .= "&gender=" .   $gender_GETfilter . "";
 	}
 
-	// echo $query;
 
 	$statement = $connect->prepare($query);
 	$statement->execute();
@@ -60,8 +68,6 @@ if (isset($_POST["action"])) {
 			$userage = $diff->format('%y');
 
 
-
-
 			$sql = "select * from favoritelist where userid ='" . $_SESSION['userid'] . "' and addfavuserid = '" . $row["userid"] . "'";
 
 
@@ -69,89 +75,59 @@ if (isset($_POST["action"])) {
 
 
 			if ($favresult->num_rows > 0) {
-				$fav = '<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
+				$fav = '<form action="./action/adddelfavlist" method="POST" style="display: inline;"> 
 				<input type="hidden" name="action" id="action" value="deletefavourite" />
 				<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
 				<input type="hidden" name="addfavuserid"  id="addfavuserid" value=' . $row['userid'] . ' />
 				<input type="submit" class="btn btn-outline-danger" value="♡ Favorite" ></form>';
 			} else {
 				$fav = '
-				<form action="./action/adddelfavlist.php" method="POST" style="display: inline;"> 
+				<form action="./action/adddelfavlist" method="POST" style="display: inline;"> 
 				<input type="hidden" name="action" id="action" value="addfavourite" />
 				<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
 				<input type="hidden" name="addfavuserid"  id="addfavuserid" value=' . $row['userid'] . ' />
 				<input type="submit" class="btn btn-outline-dark" value="♡ Favorite" ></form>';
 			}
-			$blcok = '	<form action="./action/addblock.php" method="POST" style="display: inline;"> 
+			$blcok = '	<form action="./action/addblock" method="POST" style="display: inline;"> 
 			<input type="hidden" name="action" id="action" value="addblock" />
 			<input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
 			<input type="hidden" name="blockuser"  id="blockuser" value=' . $row['userid'] . ' />
-			<input type="submit" class="btn btn-outline-dark" value="&#x1f512; Block" ></form>';
+			<input type="submit" class="btn btn-outline-dark fa" value="&#xf023; Block" ></form>';
 
 			$output .= '
 			    <div class="col-sm-4 ">
-				<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; ">
+				<div class="card">
+				<div class="card-body">
 					' . $image . '<br>
-					<h5 style="text-align:center;" >' . $row['firstname'] . ' ' . $row['lastname'] . '</h4>
+					<h5 class="card-title" style="text-align:center;" >' . $row['firstname'] . ' ' . $row['lastname'] . '</h5>
 					<p><b>Gender : </b>' . $row['gender'] . '<br />
 					<b>Age :  </b>' . $userage . ' <br />
 					<b>Personality : </b>' . $row['personality'] . ' <br />
 					<b>Occupation : </b>' . $row['occupation'] . '<br />
 					<b>Interests </b>: ' . $row['interests'] . ' </p>
 					<center>
-				
 					' .	$blcok . '
 					' . $fav . '
 					<br>
-					<a class="btn btn-success" href="chat.php?toUser=' . $row['userid'] . '&firstname=' . $row['firstname'] . '&lastname=' . $row['lastname'] . '" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></center>
+					<a class="btn btn-success" href="chat?toUser=' . $row['userid'] . '&firstname=' . $row['firstname'] . '&lastname=' . $row['lastname'] . '" role="button"><i class="fa fa-comments-o" aria-hidden="true"></i> Chat</a></center>
 
 				</div>
-
-			</div>
+</div>	<br>	
+			</div>	
+			
 			';
 		}
 	} else {
-		$output = '<br><br><br><center><div class="alert alert-warning" role="alert">No Match Users</div></center>';
+		$output = '<div class=container>  <div class="alert alert-danger" role="alert">
+        <center>
+            <p style="font-size:120px" >😭</p>
+            <h4>No Match User Found</h4> <Br>
+            <h5>Please Try Another Method To Match Users <Br> <Br>
+            </br>
+        </center>
+    </div>';
 	}
 	echo $output;
 }
 
 ?>
-
-
-<!-- 	
-<?php
-
-if (isset($_GET['page'])) {
-	$page = $_GET['page'];
-} else {
-	$page = 1;
-}
-
-$num_per_page = 06;
-$start_from = ($page - 1) * 05;
-
-
-// $sql = "select * from `userinfo`limit $start_from,$num_per_page";
-$sql = "SELECT *  FROM `userinfo`  limit $start_from,$num_per_page";;
-
-$pr_query = "select * from userinfo";
-$pr_result = mysqli_query($conn, $pr_query);
-$total_record = mysqli_num_rows($pr_result);
-
-$total_page = ceil($total_record / $num_per_page);
-
-if ($page > 1) {
-	echo "<a href='usermatching.php?page=" . ($page - 1) . "' class='btn btn-danger'>PREVIOUS</a>";
-}
-
-for ($i = 1; $i < $total_page + 1; $i++) {
-	if ($i == $page) {
-		echo "<a href='usermatching.php?page=" . $i . "'class='btn btn-outline-primary'>$i</a></li>";
-	} else {
-		echo "<a href='usermatching.php?page=" . $i . "' class='btn btn-primary'>$i</a>";
-	}
-}
-
-
-?> -->

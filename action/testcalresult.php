@@ -4,7 +4,7 @@ if ((isset($_POST["Q50"]))) {
     $_SESSION["Q50"] = $_POST["Q50"];
 } elseif ((isset($_SESSION["Q50"]))) {
 } else {
-    header("Location: ../p50.php");
+    header("Location: ../p50");
 }
 extract($_SESSION);
 include 'conn.php';
@@ -12,7 +12,7 @@ for ($q = 1;$q <= 50;$q++) {
     if ((isset($_SESSION['Q' . $q]))) {
 
      } else {
-        header("Location: ../p$q.php");
+        header("Location: ../p$q");
     }
 }
 
@@ -46,6 +46,6 @@ if ($O==$max)
                 unset($_SESSION['Q' . $q]);
              }
         
-        header("Location: ../testresultpg.php");
+        header("Location: ../testresultpg");
         mysqli_close($conn);
 ?>

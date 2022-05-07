@@ -33,7 +33,7 @@
 
 
                     echo '<script type="text/javascript">';
-                 echo 'window.location = "../mainpage.php";';
+                 echo 'window.location = "../mainpage";';
                     echo '</script>';  
                 // }else{
                 //     echo '<script type="text/javascript">';
@@ -45,7 +45,7 @@
   
                 echo '<script type="text/javascript">';
                 echo'alert("Login failed, wrong password, please try again！");';
-              echo 'window.location = "../index.php";';
+              echo 'window.location = "../index";';
                 echo '</script>'; 
             }
         }
@@ -53,7 +53,7 @@
 
         echo '<script type="text/javascript">';
         echo'alert("Login failed, no registration record, please try again or sign up a new account!");';
-      echo 'window.location = "../index.php";';
+      echo 'window.location = "../index";';
         echo '</script>'; 
     }
     mysqli_free_result($rs);

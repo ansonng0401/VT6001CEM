@@ -33,7 +33,7 @@ include 'header.php';
 
 if (isset($_SESSION['Q1'])) {
     echo"
-    <form action=\"p2.php\" method=\"POST\">";
+    <form action=\"p2\" method=\"POST\">";
     if ($_SESSION['Q1']==0){
     echo"
     <div class=\"form-check mb-2\">
@@ -135,7 +135,7 @@ echo"
 
 } else {
     echo"
-    <form  action=\"p2.php\" method=\"POST\">
+    <form  action=\"p2\" method=\"POST\">
 
     <div class=\"form-check mb-2\">
         <input class=\"form-check-input\" value=\"0\" type=\"radio\" name=\"Q1\" id=\"radio2Example1\" required=\"required\" />
@@ -151,21 +151,21 @@ echo"
     </div>
     </label>
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example2\" required=\"required\" />
-        <label class=\"form-check-label\" for=\"radio2Example2\">
+        <input class=\"form-check-input\" value=\"2\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" required=\"required\" />
+        <label class=\"form-check-label\" for=\"radio2Example3\">
             Neutral
         </label>
     </div>
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example3\" required=\"required\" />
-        <label class=\"form-check-label\" for=\"radio2Example3\">
+        <input class=\"form-check-input\" value=\"3\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" required=\"required\" />
+        <label class=\"form-check-label\" for=\"radio2Example4\">
             Slightly
         </label>
     </div>
 
     <div class=\"form-check mb-2\">
-        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example4\" required=\"required\" />
-        <label class=\"form-check-label\" for=\"radio2Example4\">
+        <input class=\"form-check-input\" value=\"4\" type=\"radio\" name=\"Q1\" id=\"radio2Example5\" required=\"required\" />
+        <label class=\"form-check-label\" for=\"radio2Example5\">
             Agree
         </label>
     </div>

@@ -27,7 +27,7 @@ if (isset($_POST['upload_image'])) {
       echo
       "
           <script>
-            document.location.href = '../mainpage.php';
+            document.location.href = '../mainpage';
           </script>
           ";
     } elseif ($imageSize > 1200000) {
@@ -36,7 +36,7 @@ if (isset($_POST['upload_image'])) {
       echo
       "
           <script>
-            document.location.href = '../mainpage.php';
+            document.location.href = '../mainpage';
           </script>
           ";
     } else {
@@ -47,12 +47,12 @@ if (isset($_POST['upload_image'])) {
           mysqli_close($conn);
       echo
       "     <script>
-          document.location.href = '../mainpage.php';
+          document.location.href = '../mainpage';
           </script>
           ";
     }
   }else
-  header("Location: ../error.php");
+  header("Location: ../error");
 }elseif (isset($_POST['delete_image'])) {
   unset($_POST['delete_image']);
   if (isset($_POST['id'])) {
@@ -64,8 +64,8 @@ if (isset($_POST['upload_image'])) {
     $_SESSION["update_image_message"] = "Remove Image Success!";
     mysqli_close($conn);
     echo '<script type="text/javascript">';
-    echo 'window.location = "../mainpage.php";';
+    echo 'window.location = "../mainpage";';
     echo '</script>'; 
   }else
-  header("Location: ../error.php");
+  header("Location: ../error");
 }

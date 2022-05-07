@@ -32,7 +32,7 @@ if ($personality == "Openness to Experience" || $personality == "Conscientiousne
     <br>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+            <li class="breadcrumb-item"><a href="personalitymainpage">Personality Home Page</a></li>
             <li class="breadcrumb-item active" aria-current="page">Personality Test Result & Information Page</li>
         </ol>
     </nav>
@@ -95,12 +95,12 @@ if ($personality == "Openness to Experience" || $personality == "Conscientiousne
     <br>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="personalitymainpage.php">Personality Home Page</a></li>
+            <li class="breadcrumb-item"><a href="personalitymainpage">Personality Home Page</a></li>
             <li class="breadcrumb-item active" aria-current="page">Personality Test Result & Information Page</li> 
         </ol>
     </nav>
 
-    <h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage.php'> Here </a>to do the test!</div></h5></center>
+    <h5><div class='alert alert-danger' role='alert'><Center>Please Complete the personality test, Click <a href='personalitystartpage'> Here </a>to do the test!</div></h5></center>
 <center><img src="./assets/image/BigFive2.png"  class="img-fluid" alt="Responsive image" width="400" height="300"></center>
 
     <?php

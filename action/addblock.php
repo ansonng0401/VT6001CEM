@@ -21,4 +21,4 @@ if (isset($_POST['userid']) && isset($_POST['action']) && isset($_POST['blockuse
   }
 } else
 
-  header("Location: ../error.php");
+  header("Location: ../error");

@@ -6,9 +6,9 @@
   $query = "UPDATE userinfo SET image = '' WHERE userid = $id";
   mysqli_query($conn, $query);
   echo '<script type="text/javascript">';
-echo 'window.location = "../mainpage.php";';
+echo 'window.location = "../mainpage";';
   echo '</script>'; 
   }
 else
-header("Location: ../error.php");
+header("Location: ../error");
 ?>

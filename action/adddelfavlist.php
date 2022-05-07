@@ -21,4 +21,4 @@ if (isset($_POST['userid']) && isset($_POST['addfavuserid']) && isset($_POST['ac
   }
 } else
 
-  header("Location: ../error.php");
+  header("Location: ../error");

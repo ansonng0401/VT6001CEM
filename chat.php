@@ -10,7 +10,7 @@ include('./action/conn.php');
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="matchingmainpage.php">Matching Home Page</a></li>
+            <li class="breadcrumb-item"><a href="matchingmainpage">Matching Home Page</a></li>
             <li class="breadcrumb-item active" aria-current="page">Chat</li>
         </ol>
     </nav>
@@ -110,7 +110,7 @@ include('./action/conn.php');
             -webkit-border-radius: 50em;
         }
 
-        img {
+        .img-circle {
             max-width: 100%;
             border-radius: 50%;
         }
@@ -241,26 +241,23 @@ include('./action/conn.php');
                 Recent Chat History
                 <ul class="friend-list">
                     <?php
-                    //$sql = "SELECT * FROM userinfo Where userid NOT IN ('" . $_SESSION['userid'] . "')";
+
                     $sql = "select * from userinfo , chatmessages
-                    where userid = touser and userid != " . $_SESSION['userid'] . " and
+                    where userid not in (select blockuserid from blocklist where userid =  " . $_SESSION['userid'] . ") and userid = touser and userid != " . $_SESSION['userid'] . " and
                     id in (select max(id) from chatmessages group by touser) and
-                    (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ")
-                                            
-                    UNION
-                                            
+                    (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ")                                      
+                    UNION            
                     select * from userinfo , chatmessages
-                    where userid = fromuser and userid != " . $_SESSION['userid'] . " and
+                    where userid not in (select blockuserid from blocklist where userid =  " . $_SESSION['userid'] . ") and userid = fromuser and userid != " . $_SESSION['userid'] . " and
                     id in (select max(id) from chatmessages group by touser) and
-                    (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ") 
-                                            
+                    (fromuser = " . $_SESSION['userid'] . " or touser = " . $_SESSION['userid'] . ")                       
                     order by id desc ";
                     $msgs = mysqli_query($conn, $sql) or die(mysqli_error($conn));
                     while ($msg = mysqli_fetch_assoc($msgs)) {
                     ?>
 
                         <li>
-                            <a href="chat.php?toUser=<?= $msg['userid'] ?>&firstname=<?= $msg['firstname'] ?>&lastname=<?= $msg['lastname'] ?>" class="clearfix">
+                            <a href="chat?toUser=<?= $msg['userid'] ?>&firstname=<?= $msg['firstname'] ?>&lastname=<?= $msg['lastname'] ?>" class="clearfix">
                                 <?php
                                 if (empty($msg['image'])) {
                                     $image = '<center><img src="./assets/image/defuserimage.png" class="img-circle" alt="user"></center>';
@@ -290,6 +287,7 @@ include('./action/conn.php');
 
             <div class="col-md-8 bg-white ">
                 <?php if (isset($uName["firstname"], $uName["lastname"])) {
+
                     echo '<div style="font-size:25px;">' . $uName["firstname"] . " " . $uName["lastname"] . '<i1 style="color:#585BAB; display: inline-block; float: right; " data-toggle="modal" data-target="#exampleModalCenter" class="fa fa-info-circle"></i1></div>';
 
                 ?>
@@ -334,7 +332,8 @@ include('./action/conn.php');
                                                 }        ?>
                                             </div>
                                             <div class="col-6">
-                                                <?= $firstname ?>
+                                                FirstName: <?= $firstname ?><br>
+                                                LastName: <?= $lastname ?><br>
                                                 Age: <?= $age->format('%y'); ?><br>
                                                 Gender: <?= $gender ?> <br>
                                                 Personality: <?= $personality ?><br>
@@ -363,11 +362,11 @@ include('./action/conn.php');
 
 
                     if (isset($_GET["toUser"]) && isset($_GET["firstname"]) && isset($_GET["lastname"])) {
-                        $chatrecsql = "SELECT * FROM chatmessages Where (fromuser =" . $_SESSION['userid'] . " AND touser = " . $_GET["toUser"] . ")OR (fromuser =" . $_GET["toUser"] . " AND touser = " . $_SESSION['userid'] . ")";
+                        $chatrecsql = "SELECT * FROM chatmessages where  (fromuser =" . $_SESSION['userid'] . " AND touser = " . $_GET["toUser"] . ")OR (fromuser =" . $_GET["toUser"] . " AND touser = " . $_SESSION['userid'] . ")";
                         $chatrec = mysqli_query($conn, $chatrecsql) or die(mysqli_error($conn));
                         while ($chat = mysqli_fetch_assoc($chatrec)) {
                             if ($chat["fromuser"] == $_SESSION['userid']) { ?>
-                                <?= "      <div style='text-align: right;'>
+                                <?= "<div style='text-align: right;'>
                     <p style='background-color:lightblue; word-wrap: break-word;display:inline-block; padding: 5px; border-radius:3px; width:auto; max width:70%;'>
                     " . $chat["message"] . "<Br><datetime style='font-size:1px'>" . $chat["datetime"] . "</datetime></p> </div>"; ?>
 
@@ -429,7 +428,7 @@ include('./action/conn.php');
                             } else {
                                 button.disabled = true
                                 $.ajax({
-                                    url: "./action/chatsendmessage.php",
+                                    url: "./action/chatsendmessage",
                                     method: "POST",
                                     data: {
                                         fromuser: $("#fromUser").val(),
@@ -461,7 +460,7 @@ include('./action/conn.php');
                         } else {
                             button.disabled = true
                             $.ajax({
-                                url: "./action/chatsendmessage.php",
+                                url: "./action/chatsendmessage",
                                 method: "POST",
                                 data: {
                                     fromuser: $("#fromUser").val(),
@@ -480,7 +479,7 @@ include('./action/conn.php');
 
                     setInterval(function() {
                         $.ajax({
-                            url: "./action/realTimeChat.php",
+                            url: "./action/realTimeChat",
                             method: "POST",
                             data: {
                                 fromuser: $("#fromUser").val(),

@@ -4,6 +4,7 @@ include 'header.php';
 ?>
 </head>
 
+
 <body>
     <div class="container">
 </body>
@@ -62,7 +63,7 @@ if ($result->num_rows > 0) {
 					<b>Personality : </b><?=$row['personality']?><br />
 					<b>Occupation : </b><?=$row['occupation'] ?><br />
 					<b>Interests </b>: <?=$row['interests'] ?></p>
-					<center> <a class="btn btn-outline-danger" href="./action/removeblock.php?userid=<?=$_SESSION['userid']?>&blockuserid=<?=$row['blockuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>"><i style="font-size:24px" class="fa">&#xf09c;</i> Unblcok</a></center>
+					<center> <a class="btn btn-outline-danger" href="./action/removeblock?userid=<?=$_SESSION['userid']?>&blockuserid=<?=$row['blockuserid']?>&firstname=<?=$row['firstname']?>&lastname=<?=$row['lastname']?>"><i style="font-size:24px" class="fa">&#xf09c;</i> Unblcok</a></center>
 				</div>
         </div>
        
@@ -76,22 +77,22 @@ if ($result->num_rows > 0) {
 
      if($page>1) 
      {
-        echo "<a href='block.php?page=".($page-1)."' class='btn btn-outline-danger'>PREVIOUS</a>";
+        echo "<a href='block?page=".($page-1)."' class='btn btn-outline-danger'>PREVIOUS</a>";
      }
 
      for($i = 1; $i < $total_page + 1; $i++) 
      {
      
        if($i==$page){
-        echo "<a href='block.php?page=".$i."' class='btn btn-primary'>$i</a>";}
+        echo "<a href='block?page=".$i."' class='btn btn-primary'>$i</a>";}
         else{
-          echo "<a href='block.php?page=".$i."' class='btn btn-outline-primary'>$i</a>";
+          echo "<a href='block?page=".$i."' class='btn btn-outline-primary'>$i</a>";
         }
      }
 
      if($i-1>$page) 
      {
-        echo "<a href='block.php?page=".($page+1)."' class='btn btn-outline-danger'>NEXT</a>";
+        echo "<a href='block?page=".($page+1)."' class='btn btn-outline-danger'>NEXT</a>";
      }
 
 

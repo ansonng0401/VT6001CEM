@@ -1,3 +1,12 @@
 RewriteEngine On
 RewriteCond %{WEB} !-f
 RewriteRule ^([^.]+)$ $1.php [NC,L]
+
+AddDefaultCharset utf-8
+AddCharset utf-8 .html .css .js
+
+RewriteCond %{THE_REQUEST} /([^.]+)\.php [NC]
+RewriteRule ^ /%1 [NC,L,R]
+
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^ %{REQUEST_URI}.php [NC,L]

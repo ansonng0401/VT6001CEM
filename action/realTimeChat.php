@@ -10,7 +10,7 @@ $fromuser = $_POST['fromuser'];
 $touser = $_POST['touser'];
 $output = "";
 
-$chatrecsql = "SELECT * FROM chatmessages Where (fromuser =" . $_SESSION['userid'] . " AND touser = " .  $touser . ")OR (fromuser =" . $touser . " AND touser = " . $_SESSION['userid'] . ")";
+$chatrecsql = "SELECT * FROM chatmessages  Where (fromuser =" . $_SESSION['userid'] . " AND touser = " .  $touser . ")OR (fromuser =" . $touser . " AND touser = " . $_SESSION['userid'] . ")";
 $chatrec = mysqli_query($conn, $chatrecsql) or die(mysqli_error($conn));
 while ($chat = mysqli_fetch_assoc($chatrec)) {
   if ($chat["fromuser"] == $fromuser) {
