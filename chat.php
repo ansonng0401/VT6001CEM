@@ -327,31 +327,31 @@ include('./action/conn.php');
                                             $sql1 = "select * from favoritelist where userid ='" . $_SESSION['userid'] . "' and addfavuserid = '" .  $userid  . "'";
 
 
-                                                $favresult = $conn->query($sql1);
+                                            $favresult = $conn->query($sql1);
 
 
-                                                if ($favresult->num_rows > 0) {
+                                            if ($favresult->num_rows > 0) {
                                                 $fav = '<form action="./action/adddelfavlist" method="POST" style="display: inline;"> 
                                                 <input type="hidden" name="action" id="action" value="deletefavourite" />
                                                 <input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
                                                 <input type="hidden" name="addfavuserid"  id="addfavuserid" value=' . $userid . ' />
                                                 <input type="submit" class="btn btn-outline-danger" value="♡ Favorite" ></form>';
-                                                } else {
+                                            } else {
                                                 $fav = '
                                                 <form action="./action/adddelfavlist" method="POST" style="display: inline;"> 
                                                 <input type="hidden" name="action" id="action" value="addfavourite" />
                                                 <input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
                                                 <input type="hidden" name="addfavuserid"  id="addfavuserid" value=' . $userid . ' />
                                                 <input type="submit" class="btn btn-outline-dark" value="♡ Favorite" ></form>';
-                                                }
-                                                $blcok = '	<form action="./action/addblock" method="POST" style="display: inline;"> 
+                                            }
+                                            $blcok = '	<form action="./action/addblock" method="POST" style="display: inline;"> 
                                                 <input type="hidden" name="action" id="action" value="addblock" />
                                                 <input type="hidden" name="userid" id="userid" value=' . $_SESSION['userid'] . ' />
                                                 <input type="hidden" name="blockuser"  id="blockuser" value=' . $userid . ' />
                                                 <input type="submit" class="btn btn-outline-dark fa" value="&#xf023; Block" ></form>';
 
-                                                ?>
-                                        
+                                            ?>
+
                                             <div class="col-3">
                                                 <? if (empty($userimage)) {
                                                     echo '<center><img src="./assets/image/defuserimage.png" class="card-img-top"  alt="user"></center>';
@@ -375,7 +375,7 @@ include('./action/conn.php');
 
                                 </div>
                                 <div class="modal-footer">
-                             
+
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>

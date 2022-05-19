@@ -54,9 +54,10 @@ if ($personality=="Openness to Experience"||$personality=="Conscientiousness"||$
     <h4 class="display-6">Personality Home Page</h4>
 
 </center>
+
 <div class="alert alert-danger" role="alert">
     <center>
-        <h5>Please Do The Personality Test</h5>
+  <h5>Please Complete the personality test, Click <a href='personalitystartpage'> Here </a>to do the test!</h5>
     </center>
 </div>
 <?php
